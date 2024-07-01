@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Anonymous Function
+        // var x = function(a,b){
+        //     return (
+        //          // arguments.length
+        //          a*b
+        //     )
+        // }
+        // var result = x(4,3);
+        // console.log(result);
+        // console.log(x.toString())
+
+        // Hositing applies to functiona declaration and variable declaration as well
+        //Self invoked function
+        // (function(){
+        //     console.log('Self Invoked Function');
+        // })();
+
+        //Arrow Function
+
+        // const res = (x,y) => x*y;
+        // console.log(res(2,3));
+
+        //a function is called with missing arguments (less than declared), the missing values are set to undefined.
+
+        function myFunction(x,y){
+            if( y == undefined){
+                y=5;
+            }
+            return x*y
+        }
+        var result = myFunction(2)
+        console.log(result);
+    </script>
+</body>
+</html>

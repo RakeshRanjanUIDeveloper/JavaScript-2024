@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function printNumbers(){
+        //     for(var i=1; i<=10; i++){
+        //         console.log(i);
+        //     }
+        // }
+        // printNumbers();
+
+        // function printArray(arr){
+        //     for(var i=0; i<arr.length; i++){
+        //         for(var j=0; j<arr.length; j++){
+        //             console.log(arr[i][j])
+        //         }
+        //     }
+        // }
+        // var arr= [[1,2] , [4,6]];
+        // printArray(arr);
+
+        //Find even number from given array
+        // function findEvenNumber(arr){
+        //     for(var i=0; i<arr.length; i++){
+                
+        //         if(arr[i] % 2 == 0){
+        //             console.log(arr[i]);
+        //         }
+        //     }
+        // }
+        // var arr = [1,2,3,4,5,6,7]
+        // findEvenNumber(arr)
+
+        //Delete Occurance from an Array
+        // function removeDuplicate(arr){
+        //     var uniqueArray = [];
+        //     var myObject = {};
+        //     for(var i=0; i<arr.length; i++){
+        //        if(!myObject[arr[i]]){
+        //             uniqueArray.push(arr[i]);
+        //             myObject[arr[i]] = true;
+                    
+        //        };
+        //     }
+        //     return uniqueArray
+        // }
+        // var arr = [1,2,3,1,2,4,5]
+        // let result = removeDuplicate(arr);
+        // console.log(result);
+
+        //Delete all Occurance of 
+        // function deleteOccurance(arr, ele){
+        //     for(var i=0; i<arr.length; i++){
+        //         if(arr[i] === ele){
+        //             arr.splice(i,1);
+        //         }
+        //     }
+        //     return arr
+        // }
+        // var arr = [1,2,3,3,4,5,6,];
+        // let result = deleteOccurance(arr, 3);
+        // console.log(result);
+
+        // for(var i=0; i<5; i++){
+        //     setTimeout(() => {
+        //         console.log(i);
+        //     }, 5000);
+        // }
+
+        //Power of a number
+
+        // function findPowerOfNumber(num, pow){
+        //     let res = 1;
+        //     for(var i=0; i<pow; i++){
+        //         res= res*num
+        //     }
+        //     return res;
+        // }
+        // let output = findPowerOfNumber(2,4);
+        // console.log(output);
+
+
+        function printPattern(range){
+          
+            for(var i=1; i<=range; i++){
+                var str="";
+                for(var j=1; j<=i; j++){
+                    str += j+" ";
+                }
+                console.log(str);
+            }
+            
+        }
+        printPattern(8);
+
+    </script>
+</body>
+</html>
