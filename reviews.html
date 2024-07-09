@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .min-height {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .review-items {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60%;
+            height: 60vh;
+            border: 2px solid #bebebe;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            position: relative;
+        }
+
+        .review-item {
+            border: 1px solid #000;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            display: none;
+        }
+
+        .review-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: space-between;
+            width: 100px;
+        }
+
+        .review-prev-control, .review-next-control {
+            color: #fff;
+            font-size: 2vw;
+            background: cornflowerblue;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <section class="min-height">
+        <div class="review-items">
+            <div class="review-item">
+                <h2>Review One</h2>
+            </div>
+            <div class="review-item">
+                <h2>Review Two</h2>
+            </div>
+            <div class="review-item">
+                <h2>Review Three</h2>
+            </div>
+            <div class="review-controls">
+                <div class="review-prev-control">&#8592;</div>
+                <div class="review-next-control">&#8594;</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const reviewItems = document.querySelectorAll('.review-item');
+        const prevArrow = document.querySelector('.review-prev-control');
+        const nextArrow = document.querySelector('.review-next-control');
+        let index = 0;
+
+        function showSlide(idx) {
+            reviewItems.forEach(item => {
+                item.style.display = 'none';
+            });
+            reviewItems[idx].style.display = 'block';
+        }
+
+        showSlide(index);
+
+        nextArrow.addEventListener('click', function() {
+            index = (index + 1) % reviewItems.length;
+            //console.log(index);
+            showSlide(index);
+        });
+
+        prevArrow.addEventListener('click', function() {
+            index = (index - 1 + reviewItems.length) % reviewItems.length;
+            console.log(index);
+            showSlide(index);
+        });
+    </script>
+</body>
+</html>
