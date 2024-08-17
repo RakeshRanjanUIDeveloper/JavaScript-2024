@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // object constructor syntax
+        // let user = new Object(); 
+
+        // object literal syntax
+        // let user = {}; 
+
+        let user ={
+            'name' :'rakesh',
+            'age' : 30,
+            'Birth Place' : 'Ranchi'
+        }
+        // alert(user.name+ " " +user.age+ " " +user['Birth Place'])
+        // let key = prompt("Enter your name", "name");
+        // alert(user[key]);
+
+        for(let key in user){
+            alert(key+" "+ user[key])
+        }
+
+        let count ={
+            1:10,
+            2:20,
+            9:90,
+            4:40
+        }
+        for(let num in count){
+            alert(num+ "" +count[num])
+        }
+    </script>
+</body>
+</html>
