@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .min-height {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: 100vh;
+        }
+
+        .carousel-content {
+            text-align: center;
+            border: 1px solid red;
+            height: 200px;
+            width: 200px;
+            display: none;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            border: 2px solid green;
+            bottom: 20%;
+            width: 20%;
+            height: 4%;
+            padding: 0.5%;
+        }
+
+        .carousel-next {
+            right: 0;
+            position: absolute;
+            cursor: pointer;
+        }
+
+        .carousel-previous {
+            position: absolute;
+            left: 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="min-height">
+        <div class="container">
+            <div class="carousel-wrapper">
+                <div class="carousel-content">1</div>
+                <div class="carousel-content">2</div>
+                <div class="carousel-content">3</div>
+                <div class="carousel-content">4</div>
+                <div class="carousel-content">5</div>
+                <div class="carousel-controls">
+                    <div class="carousel-next">Next</div>
+                    <div class="carousel-previous">Previous</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const nextBtn = document.querySelector('.carousel-next');
+        const prevBtn = document.querySelector('.carousel-previous');
+        const eachItem = document.querySelectorAll('.carousel-content');
+        const totalItem = document.querySelectorAll('.carousel-content').length;
+        let currentItem = 0;
+        eachItem[currentItem].style.display = 'block';
+        function changeCarousel(index){
+            for (let i= 0; i<totalItem; i++) {
+                if(i === index){
+                    eachItem[i].style.display='block'
+                }else{
+                    eachItem[i].style.display='none'
+                }
+            }
+        }
+        nextBtn.addEventListener('click', function(){
+            currentItem++;
+            if(currentItem >= totalItem){
+                currentItem = 0;
+            }
+            changeCarousel(currentItem);
+        })
+        prevBtn.addEventListener('click', function(){
+            currentItem--;
+            if(currentItem < 0){
+                currentItem = totalItem -1;
+            }
+            changeCarousel(currentItem);
+        })
+    </script>
+</body>
+
+</html>
