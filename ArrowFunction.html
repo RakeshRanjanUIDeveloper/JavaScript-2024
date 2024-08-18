@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Arrow functions, on the other hand, do not have their own this context. 
+        Instead, they capture this from the surrounding lexical context where they are defined. 
+        This is determined at the time the arrow function is defined, not when it is called.</p>
+    <p>If you need to use arguments in a function, you might run into an issue with arrow functions 
+        since they don't have their own arguments object. In the arrow function,
+         we use the rest parameter (...args) to achieve similar functionality to the arguments object.</p>
+    <script>
+        const useArrow = {
+            name:"Rakesh",
+            sayName : function(){
+                setTimeout(() =>{
+                    console.log(this.name)
+                }, 1000)
+            }
+        }
+        useArrow.sayName();
+    </script>
+    <script>
+        const personArrow = {
+            name :"Rakesh",
+            hobbies :  ["Reading", "Traveling", "Swimming"],
+            showHobbies : function(){
+                this.hobbies.forEach((hobby)=> {
+                    console.log(`${this.name} likes ${hobby}`)
+                })
+            }
+        }
+        personArrow.showHobbies();
+    </script>
+    <script>
+        const arrowSum = (...args) =>{
+            console.log(args);
+            return args.reduce((sum, num) => sum +num, 0)
+        }
+      console.log(arrowSum(1,2,3))
+    </script>
+</body>
+</html>
