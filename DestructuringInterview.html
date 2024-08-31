@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Swap Two Variables Using Destructuring</p>
+    <script>
+        let a=10;
+        let b=20;
+        [b,a]=[a,b]
+        console.log(a, b)
+    </script>
+    <p>Extract Values from an Array</p>
+    <script>
+        const numbers =[1,2,3,4,5];
+        const [x,y, ...rest] = numbers;
+        console.log(x,y);
+        console.log(rest)
+    </script>
+</body>
+</html>

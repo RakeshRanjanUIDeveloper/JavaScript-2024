@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function logArguments(...args){
+            console.log(args)
+        }
+        logArguments(1,2,3,4,5);
+        logArguments("a", "b", "c");
+
+        function concateString(separator, ...args){
+            console.log(args.join(separator))
+        }
+        concateString('-', 'Hello', 'World', "India")
+
+        const numbers =[1,2,3,4,5];
+        const [f,s,...args]= numbers;
+        console.log(f)
+        console.log(s)
+        console.log(args)
+
+
+        function createrPerson(name, age, ...additionaldetails){
+            const person = {
+                name, age, details:additionaldetails
+            }
+            return person
+        }
+        const person1 = createrPerson("Rakesh", 32, 'INDIA', 'Engineer', 'Like Movies');
+        console.log(person1)
+    </script>
+</body>
+</html>
