@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Using call we can do function borrowing
+        //call method is use to invoke the function directly by passing in the refrence which points to this variable inside the method
+
+        const person ={
+            fname:"Rakesh",
+            lname :"Ranjan",
+            // printFullName: function(){
+            //     console.log(this.fname +" " +this.lname);
+            // }
+        }
+        let printFullName= function(hometown, state){
+                console.log(this.fname +" " +this.lname + " is from " +hometown + " "+state);
+            }
+
+        printFullName.call(person, "Ranchi", "Jharkhand");
+
+        let person2 ={
+            fname:"Sachin",
+            lname:"Tendulkar"
+        }
+
+        //printFullName.call(person2, "Mumbai")
+
+        //Different between call and apply is the way we pass the function, it takes the 2nd arguments as an array list
+
+        printFullName.apply(person2, ["Mumbai", "Maharashtra"])
+
+        //Bind method is exactly look like call method but the only difference is ,
+        //Bind method does not directly invoke the method But give u the copy of method which can be called later
+        // It is used to bind the method and use it later
+
+        let printmyName = printFullName.bind(person2, "Mumbai", "Maharasthra");
+        console.log(printFullName);
+        printmyName()
+    </script>
+</body>
+</html>
