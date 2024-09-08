@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Currying allows you to break down a function with multiple arguments into a series of functions with single arguments.
+       // Currying can indeed be implemented in JavaScript using two primary methods: closures and the bind method. 
+       //Using closure
+       function curryMultiply(a){
+        return function(b){
+            return function(c){
+                return a*b*c
+            }
+        }
+       }
+       let result = curryMultiply(2)(3)(4);
+       console.log(result); 
+
+       //Using Bind
+
+       function multiplies(x,y,z){
+        return x*y*z
+       }
+       const curryMultiplies = function(x){
+        return function(y){
+            return function(z){
+                return multiplies(x,y,z)
+            }
+        }
+       }
+       const output = curryMultiplies(2)(3)(4);
+       console.log(output);
+    </script>
+</body>
+</html>
