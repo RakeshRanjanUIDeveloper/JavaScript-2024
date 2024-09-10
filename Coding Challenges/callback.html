@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //callback is a function that is passed as an argument to another function and is executed after some operation has been completed. 
+        //callback are used to handle asynchronous operations, such as reading files, making HTTP requests, or waiting for user interactions.
+        function greet(name, callback){
+            console.log(`Hello ${name}`);
+            callback()
+        }
+        //sayGoodBye is a callback function
+        function sayGoodBye(){
+            console.log("Good Bye");
+        }
+        greet('Alice', sayGoodBye)
+
+        //Callbacks are particularly useful for handling asynchronous operations.
+
+        function fetchData(callback){
+            setTimeout(() => {
+                console.log("Data Fetch Successfully");
+                callback()
+            }, 2000);
+        }
+        function processData(){
+            console.log("Processing Data");
+        }
+        fetchData(processData)
+
+        //Callback with Parameters
+        function multiply(a, b, callback){
+            let result = a*b;
+            callback(result)
+        }
+        function dislayResult (result) {
+           console.log(result);
+        }
+        multiply(2,3,dislayResult)
+
+
+        function sortArray(arr, callback){
+            return arr.sort(callback)
+        }
+        function ascending(a,b){
+            return a-b
+        }
+        function descending(a,b){
+            return b-a
+        }
+        const numbers =[1,3,2,5,4,6,7,9,8];
+        console.log(sortArray([...numbers], ascending));
+        console.log(sortArray([...numbers], descending));
+    </script>
+</body>
+</html>
