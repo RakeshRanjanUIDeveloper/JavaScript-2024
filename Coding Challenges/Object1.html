@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //objects are used to store keyed collections of various data
+        //An object can be created with figure brackets {…} 
+
+        // An empty object (“empty cabinet”) can be created using one of two syntaxes:
+
+        let user1 = new Object(); //object constructor syntax
+        let user2 = {}; //object literal syntax
+
+        let user3 ={
+            name:"Rakesh",
+            age:32,
+            'my address' :"Bangalore"
+        }
+        console.log(user3.name + " " + user3.age +" "+user3['my address']);
+
+        //The value can be of any type. eg: boolean
+
+        //We can also use multiword property names, but then they must be quoted:
+        //They can be access like : object['property name']
+
+        //Objects can also have methods (functions as properties):
+        //Inside a method, this refers to the object itself:
+        //Objects can contain other objects:
+        let person ={
+            fname:'ABC',
+            lname:'XYZ',
+            fullName:function(){
+                console.log(this.fname +" "+this.lname);
+            },
+            location:{
+                city:"Bangalore",
+                state:"Karnataka"
+            }
+        }
+        person.fullName();
+        console.log(person.location.city);
+
+        //JavaScript objects can inherit properties and methods from other objects via prototypes:
+
+        function Animal(name){
+            this.name = name;
+        }
+        Animal.prototype.speak = function(){
+            console.log(this.name +" Makes a noise");
+        }
+        let dog = new Animal('Dog');
+        dog.speak();
+
+        //We can create a new object with a specified prototype object:
+
+        let animal ={
+            speak:function(){
+                console.log('Animal speaks!!');
+            }
+        }
+        let cat = Object.create(animal);
+        cat.speak();
+
+        //class-based approach to creating objects:
+        class Person{
+            constructor(name,age){
+                this.name =name;
+                this.age=age;
+            }
+            greet(){
+                console.log('Hello ' + this.name);
+            }
+        }
+        let p = new Person("Rakesh", 32);
+        p.greet();
+
+    </script>
+</body>
+</html>
