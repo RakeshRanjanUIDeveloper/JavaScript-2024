@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Zoom</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .image-wrapper {
+            width: 70%;
+            height: 90vh;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            position: relative;
+            overflow: hidden;
+        }
+
+        img {
+            max-width: none;
+            transition: transform 0.2s;
+            cursor: grab;
+        }
+
+        .buttons {
+            margin-top: 10px;
+        }
+
+        button {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="image-wrapper">
+            <img id="image" src="./slide63.png" alt="Image" />
+        </div>
+        <div class="buttons">
+            <button id="zoomIn">Zoom In</button>
+            <button id="zoomOut">Zoom Out</button>
+            <button id="reset">Reset</button>
+        </div>
+    </div>
+
+    <script>
+      
+    const image = document.getElementById('image');
+    const zoomInButton = document.getElementById('zoomIn');
+    const zoomOutButton = document.getElementById('zoomOut');
+    const resetButton = document.getElementById('reset');
+
+    let scale = 1;
+    let isDragging = false;
+    let startX;
+    let startY;
+    let scrollLeft;
+    let scrollTop;
+
+    let initialScrollLeft = 0;
+    let initialScrollTop = 0;
+
+    // Store the initial scroll position when the page loads
+    window.onload = () => {
+        initialScrollLeft = imageWrapper.scrollLeft;
+        initialScrollTop = imageWrapper.scrollTop;
+    };
+
+    zoomInButton.addEventListener('click', () => {
+        scale += 0.1; 
+        updateScale();
+    });
+
+    zoomOutButton.addEventListener('click', () => {
+        if (scale > 0.1) { 
+            scale -= 0.1; 
+            updateScale();
+        }
+    });
+
+    resetButton.addEventListener('click', () => {
+        scale = 1; 
+        updateScale();
+        
+        // Reset the scroll position
+        imageWrapper.scrollLeft = initialScrollLeft;
+        imageWrapper.scrollTop = initialScrollTop;
+    });
+
+    function updateScale() {
+        image.style.transform = `scale(${scale})`; 
+        image.style.transformOrigin = '0 0'; 
+    }
+
+    const imageWrapper = document.querySelector('.image-wrapper');
+
+    imageWrapper.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.pageX - imageWrapper.offsetLeft;
+        startY = e.pageY - imageWrapper.offsetTop;
+        scrollLeft = imageWrapper.scrollLeft;
+        scrollTop = imageWrapper.scrollTop;
+        imageWrapper.style.cursor = 'grabbing'; 
+    });
+
+    imageWrapper.addEventListener('mouseleave', () => {
+        isDragging = false;
+        imageWrapper.style.cursor = 'grab'; 
+    });
+
+    imageWrapper.addEventListener('mouseup', () => {
+        isDragging = false;
+        imageWrapper.style.cursor = 'grab'; 
+    });
+
+    imageWrapper.addEventListener('mousemove', (e) => {
+        if (!isDragging) return; 
+        e.preventDefault();
+        const x = e.pageX - imageWrapper.offsetLeft;
+        const y = e.pageY - imageWrapper.offsetTop;
+        const walkX = (x - startX) * 1; 
+        const walkY = (y - startY) * 1;
+        imageWrapper.scrollLeft = scrollLeft - walkX;
+        imageWrapper.scrollTop = scrollTop - walkY;
+    });
+
+
+    </script>
+</body>
+
+</html>
