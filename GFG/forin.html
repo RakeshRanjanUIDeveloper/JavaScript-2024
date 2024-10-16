@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let numbers = [1,2,3,4,5,6];
+        for (const value in numbers) {
+            console.log(numbers[value]);
+        }
+
+        let courses = {
+            firstCourse: 'HTML',
+            secondCourse : 'CSS',
+            thirdCourse : 'JavaScript'
+        }
+        const student = Object.create(courses);
+        // console.log(student);
+        for (const key in student) {
+            console.log(student[key]);
+        }
+
+        let str = 'Hello';
+        for (const element of str) {
+            console.log(element);
+        }
+
+        const map = new Map([
+            ['name', 'Rakesh'],
+            ['age', 25],
+        ])
+        for (const [key, value] of map) {
+            console.log(`${key} ${value}`);
+        }
+    </script>
+</body>
+</html>
