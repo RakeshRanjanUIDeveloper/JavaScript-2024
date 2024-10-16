@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Function currying is a technique where a function 
+        // with multiple arguments is transformed into a series 
+        // of functions, each taking a single argument.
+
+        // Currying with Bind
+        let multiply = function(x,y){
+            console.log(x*y);
+        }
+        let multiplyByTwo = multiply.bind(this, 2);
+        multiplyByTwo(10);
+
+        let multiplyByThree = multiply.bind(this, 3);
+        multiplyByThree(10);
+
+        //Currying with Closure
+        let multiplication = function(x){
+            return function(y){
+                console.log(x*y);
+            }
+        }
+        multiplication(2)(3);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Try - Test a block of code to check for errors</h3>
+    <h3>Catch - Handle the error if any are present</h3>
+    <h3>throw - Make your own errors.</h3>
+    <h3>finally - execute code after try and catch.</h3>
+    <h3>finally - block runs regardless of the result of the try-catch block.</h3>
+    <script>
+        // try {
+        //     dadalert("Welcome Fellow Geek!");
+        // } catch (error) {
+        //     console.log(err);
+        // }
+
+        // function geekFunc(){
+        //     let a = 10;
+        //     try {
+        //        console.log("Value of a is " + a); 
+        //     } catch (error) {
+        //         console.log("Error is :" +error.description);
+        //     }
+        // }
+        // geekFunc();
+                
+        try {
+            throw new Error("Yeah....sorry")
+        } catch (error) {
+            console.log(error);
+        }
+
+
+        try {
+            console.log("try");
+        } catch (error) {
+            console.log("catch");
+        }finally{
+            console.log("finally");
+        }
+    </script>
+</body>
+</html>

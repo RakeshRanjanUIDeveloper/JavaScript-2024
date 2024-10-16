@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>return Statement</title>
+</head>
+<body>
+    <h3>return statement is used to stop the function’s execution</h3>
+    <h3>optionally return a value to the caller</h3>
+    <h3>It can be used to return a specific value, variable, or expression to the caller. </h3>
+    <h3>If no value is provided, the function returns undefined by default.</h3>
+
+    <script>
+        function product(a,b){
+            return a*b
+        }
+        console.log(product(6,10));
+
+        function language(){
+            let first = 'HTML',
+                second = 'CSS',
+                third = 'JavaScript'
+
+                return [first, second, third]
+        }
+        let [first, second, third] = language();
+        console.log(first, second, third);
+
+
+        function printName(name){
+            console.log(name); // rr
+        }
+        let result = printName("rr")
+        console.log(result); // undefined - If there is no return statement in a function
+    </script>
+</body>
+</html>
