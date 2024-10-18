@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let name = [];
+        console.log(name);
+        let courses = ["HTML", "CSS", "JS"];
+        console.log(courses);
+        
+        let subjects = ["Maths", "English", "Science"];
+        console.log(subjects);
+        const firstSubject = subjects[0];
+        const lastSubject = subjects[subjects.length - 1]
+        console.log(`First Subject is ${firstSubject} and last subject is ${lastSubject}`);
+        subjects[1]="Hindi";
+        console.log(subjects);
+        subjects.push('English'); //add the element to the end of the array.
+        subjects.unshift('Economics'); //add the element to the starting of the array.
+        console.log(subjects);
+
+        let numbers = [1,2,3,4,5,6];
+        console.log("Original Numbers", numbers);
+        numbers.pop(); //removes an element from the last index of the array.
+        console.log("After Pop" , numbers);
+        numbers.shift() // removes the element from the first index of the array.
+        console.log("After shift", numbers);
+        numbers.splice(1,2); //Removes 2 elements starting from index 1
+        console.log("After Splice", numbers);
+        console.log("Array Length", numbers.length);
+
+
+        let values= ["One", "Two", "Three", "Four", "Five"]
+        for(i=0; i<values.length; i++){
+            console.log(values[i]);
+        }
+        values.forEach((value)=>{
+            console.log(value);
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .min-height {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .accordion {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .accordion-header {
+            background-color: #f9f9f9;
+            padding: 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 15px;
+            background-color: #fff;
+        }
+        .accordion-content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="min-height">
+        <div class="container">
+            <div id="accordion"></div>
+        </div>
+    </section>
+    <script>
+        let data = [
+            {
+                title: 'Item 1',
+                content: 'Content 1 from item 1'
+            },
+            {
+                title: 'Item 2',
+                content: 'Content 2 from item 2'
+            },
+            {
+                title: 'Item 3',
+                content: 'Content 3 from item 3'
+            },
+            {
+                title: 'Item 4',
+                content: 'Content 4 from item 4'
+            },
+            {
+                title: 'Item 5',
+                content: 'Content 5 from item 5'
+            },
+            {
+                title: 'Item 6',
+                content: 'Content 6 from item 6'
+            }
+        ];
+
+        const accordionContainer = document.getElementById('accordion');
+        data.forEach((item) => {
+            const accordionItem = document.createElement('div');
+            accordionItem.classList.add('accordion-item');
+
+            const accordionHeader = document.createElement('div');
+            accordionHeader.classList.add('accordion-header');
+            accordionHeader.textContent = item.title;
+
+            const accordionContent = document.createElement('div');
+            accordionContent.classList.add('accordion-content');
+            accordionContent.textContent = item.content;
+
+            accordionHeader.addEventListener('click', function () {
+                let allinnercontents = accordionContainer.querySelectorAll('.accordion-content');
+                allinnercontents.forEach((eachContent) =>{
+                    if(eachContent !== accordionContent){
+                        eachContent.classList.remove('active')
+                    }
+                })
+                accordionContent.classList.toggle('active');
+            })
+
+            accordionItem.append(accordionHeader, accordionContent);
+            accordionContainer.appendChild(accordionItem);
+        })
+    </script>
+</body>
+
+</html>
