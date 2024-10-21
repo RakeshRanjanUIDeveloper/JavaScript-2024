@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //this keyword refers to geekObject object.
+        // const geekObject ={
+        //     name:"Geeks",
+        //     print:function(){
+        //         console.log(this.name);
+        //     }
+        // }
+        // geekObject.print();
+
+        const geekObject ={
+            name:"Geeks",
+            print:function(){
+                console.log(this.name);
+            }
+        }
+        const print2 = geekObject.print; 
+        //const print2 = geekObject.print.bind(geekObject); 
+        print2();
+    </script>
+</body>
+</html>

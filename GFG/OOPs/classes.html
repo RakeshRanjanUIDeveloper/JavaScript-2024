@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4>Classes are a blueprint for creating objects</h4>
+    <h4>classes in JavaScript are not hoisted. </h4>
+    <h4>Classes encapsulate data and behavior by defining properties and methods</h4>
+    <h4>Classes simplify the creation of objects</h4>
+    <hr>
+    <h4>Constructor Method is a special method used for initializing objects created with a class.</h4>
+    <h4>It’s called automatically when a new instance of the class is created.</h4>
+
+
+    <script>
+        class emp{
+            constructor(name, age){
+                this.name = name;
+                this.age = age;
+            }
+        }
+        const emp1 = new emp("Rakesh", 32);
+        console.log(emp1.name + " age is " + emp1.age);
+
+        //Named class Expression
+        const website = class Geek{
+            constructor(name){
+                this.name = name;
+            }
+            websiteName(){
+                return this.name
+            }
+        }
+        const x = new website("GeeksForGeeks");
+        console.log(x.websiteName());
+
+        //Unnamed class expression
+        const printName = class{
+            constructor(name){
+                this.name = name;
+            }
+            returnName(){
+                return this.name
+            }
+        }
+        console.log(new printName("Rakesh Ranjan").returnName());
+    </script>
+</body>
+</html>

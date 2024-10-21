@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const promise = new Promise(function(resolve,reject){
+            const x= 'geeksforgeeks';
+            const y= 'geeksforgeeks';
+            if(x===y){
+                resolve()
+            }else{
+                reject();
+            }
+        })
+
+        promise.then(function(){
+            console.log("Success, You are a GEEK");
+        }).catch(function(){
+            console.log("Some Error has occured");
+        })
+
+
+        let promise1= new Promise(function(resolve, reject){
+            resolve("Geeks for Geek Success")
+        })
+        promise1.then(function(successMessage){
+            console.log(successMessage)
+        }).catch(function(errorMessage){
+            console.log(errorMessage);
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Function Declaration
+        function calcAddition(num1, num2){
+            return num1 + num2
+        }
+        console.log(calcAddition(2,2));
+
+        //Function Expression
+        const square = function(num){
+            return num *num
+        }
+        const result = square(3);
+        console.log(result);
+
+        //Arrow Function
+        const a = ["Hydrogen", "Helium", "Lithium", "Beryllium"];
+        const a2 = a.map((s)=>{
+            return s.length
+        })
+        console.log(a2);
+
+        //Function Parameters
+        function multiply(a,b){
+            b = typeof b !== 'undefined' ? b : 1;
+            return a * b;
+        }
+        console.log(multiply(13));
+
+        //Calling Functions
+        function welcomeMessage(name){
+            return ("Hello " +name+ " Welcome to the GeekForGeeks");
+        }
+        let name = "Rakesh";
+        console.log(welcomeMessage(name));
+    </script>
+</body>
+</html>
