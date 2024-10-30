@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .min-height {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .accordion-wrapper {
+            display: flex;
+            align-items: center;
+            height: 80vh;
+            width: 100%;
+        }
+
+        .accordion-card {
+            border: 1px solid #000;
+            border-radius: 5px;
+            width: 33%;
+            margin: 0 auto;
+        }
+
+        .accordion-header {
+            background: #bebebe;
+            padding: 11px;
+            font-size: 1.2vw;
+            font-weight: 600;
+            font-family: Graphik;
+            text-align: center;
+            border: 2px solid #bebebe;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .accordion-header:hover{
+            text-decoration: underline;
+            font-weight: 700;
+            color: blue;
+        }
+
+        .accordion-content {
+            font-size: 1vw;
+            font-weight: 500;
+            font-family: Graphik;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="min-height">
+        <div class="container-fluid no-padding">
+            <div class="accordion-wrapper">
+                <div class="accordion-card">
+                    <div class="accordion-header">Title One</div>
+                    <div class="accordion-content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque
+                        officia ut dicta, similique debitis incidunt. Similique harum aut nemo animi.</div>
+                </div>
+                <div class="accordion-card">
+                    <div class="accordion-header">Title Two</div>
+                    <div class="accordion-content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque
+                        officia ut dicta, similique debitis incidunt. Similique harum aut nemo animi.</div>
+                </div>
+                <div class="accordion-card">
+                    <div class="accordion-header">Title Three</div>
+                    <div class="accordion-content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eaque
+                        officia ut dicta, similique debitis incidunt. Similique harum aut nemo animi.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const accordionHeaders = document.querySelectorAll('.accordion-header')
+        const accordionContents = document.querySelectorAll('.accordion-content')
+        function hideAllContents() {
+            accordionContents.forEach((content) => {
+                content.classList.add('hide')
+            })
+        }
+        hideAllContents();
+        accordionHeaders.forEach((header, index) => {
+            header.addEventListener('click', function () {
+                const isHidden = accordionContents[index].classList.contains('hide')
+                hideAllContents();
+                if (isHidden) {
+                    accordionContents[index].classList.remove('hide');
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
