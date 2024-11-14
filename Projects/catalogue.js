@@ -1,4 +1,4 @@
-[
+const products =[
     {
       "id": 1,
       "imageURL": "https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/black-polo-men.png",
@@ -330,3 +330,76 @@
       "quantity": 4
     }
   ]
+  // Sample product data from JSON
+ 
+
+// Helper function to get selected filter values
+function getSelectedValues(name) {
+  const selectedValues = [];
+  document.querySelectorAll(`input[name="${name}"]:checked`).forEach(checkbox => {
+      selectedValues.push(checkbox.value);
+  });
+  return selectedValues;
+}
+
+// Render product cards based on the filtered data
+function renderCatalogue(filteredData) {
+  const container = document.getElementById('productContainer');
+  container.innerHTML = '';
+
+  filteredData.forEach(item => {
+      const productCard = document.createElement('div');
+      productCard.classList.add('product-card');
+
+      productCard.innerHTML = `
+          <img src="${item.imageURL}" alt="${item.name}" />
+          <h5>${item.name}</h5>
+          <p>₹${item.price}</p>
+          <p>Stock: ${item.quantity}</p>
+      `;
+
+      container.appendChild(productCard);
+  });
+}
+
+// Apply filters based on selected options
+function applyFilters() {
+  const selectedColors = getSelectedValues('color');
+  const selectedGenders = getSelectedValues('gender');
+  const selectedPrices = getSelectedValues('price');
+  const selectedTypes = getSelectedValues('type');
+
+  const filteredData = products.filter(item => {
+      const isColorMatch = selectedColors.length === 0 || selectedColors.includes(item.color);
+      const isGenderMatch = selectedGenders.length === 0 || selectedGenders.includes(item.gender);
+      const isPriceMatch = selectedPrices.length === 0 || selectedPrices.some(price => {
+          if (price === '0-250') return item.price <= 250;
+          if (price === '251-400') return item.price > 250 && item.price <= 400;
+          if (price === '401-500') return item.price > 400 && item.price <= 500;
+          if (price === '500+') return item.price > 500;
+          return false;
+      });
+      const isTypeMatch = selectedTypes.length === 0 || selectedTypes.includes(item.type);
+
+      return isColorMatch && isGenderMatch && isPriceMatch && isTypeMatch;
+  });
+
+  renderCatalogue(filteredData);
+}
+
+// Add event listeners to filter checkboxes
+function setupFilterListeners() {
+  const filterElements = document.querySelectorAll('input[type="checkbox"]');
+  filterElements.forEach(element => {
+      element.addEventListener('change', applyFilters);
+  });
+}
+
+// Initial setup when the page loads
+function init() {
+  renderCatalogue(products);  // Show all products initially
+  setupFilterListeners();      // Set up filter listeners
+}
+
+// Initialize on page load
+window.onload = init;

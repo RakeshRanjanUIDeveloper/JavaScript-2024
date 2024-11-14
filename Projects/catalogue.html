@@ -1,263 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalogue</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Shopping Cart with Filters</title>
     <style>
-        .min-height {
-            height: 100vh;
-            position: relative;
-            overflow: hidden;
-        }
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #f4f4f4;
+}
 
-        .no-padding {
-            padding: 0;
-        }
+.container {
+    display: flex;
+    margin-top: 20px;
+}
 
-        .catalogue-wrapper {
-            width: 100%;
-            display: flex;
-            background: #f1f3f6;
-            box-shadow: 0 1px 8px 0 rgba(0, 0, 0, .06);
-        }
+.sidebar {
+    width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+}
 
-        .catalogue-filters {
-            background: #fff;
-            width: 14%;
-            border: 1px solid #f0f0f0;
-            height: 100vh;
-            margin: 0 1% 0 0;
-            padding: 20px;
-        }
-
-        .catalogue-products {
-            background: #fff;
-            width: 85%;
-            border: 1px solid #f0f0f0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .card {
-            width: 19%;
-            height: auto;
-            border: 1px solid #000;
-            text-align: center;
-            margin: 1% auto;
-            box-shadow: 0 1px 8px 0 rgba(0, 0, 0, .06);
-            position: relative;
-        }
-
-        .card img {
-            width: 80%;
-            margin: 0 auto;
-            display: block;
-        }
-
-.catalogue-filters h3 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #000;
-    font-weight: 600;
+.product-list {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .checkboxDiv {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .checkboxDiv h4 {
     font-size: 18px;
     margin-bottom: 10px;
-    color: #000;
-    font-weight: 600;
 }
 
-.check_box {
-    display: flex;
-    flex-direction: column;
+.check_box input {
+    margin-right: 10px;
 }
 
-.check_box input[type="checkbox"] {
-    display: none; 
+.product-card {
+    display: inline-block;
+    width: 180px;
+    margin: 10px;
+    background-color: #fff;
+    padding: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-.check_box label {
-    position: relative;
-    padding-left: 30px;
-    cursor: pointer;
+.product-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.product-card h5 {
     font-size: 16px;
-    color: #000;
-    font-weight: 300;
+    margin: 10px 0;
 }
 
-.check_box label:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    border: 2px solid #000; 
-    border-radius: 4px; 
-    background-color: white; 
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+.product-card p {
+    font-size: 14px;
+    color: #555;
 }
 
-.check_box input[type="checkbox"]:checked + label:before {
-    background-color: #007bff; 
-    border-color: #0056b3; 
-}
-
-.check_box input[type="checkbox"]:checked + label {
-    color: #0056b3;
-}
-.check_box label:hover:before {
-    border-color: #0056b3; 
-}
-.catalogue-thumb {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 300px;
-    background: #f0f0f0;
-    flex-direction: column;
-}
-.badge {
-    position: absolute;
-    left: 0;
-    top: 0;
-    text-transform: uppercase;
-    font-size: 12px;
-    font-weight: 700;
-    background: #000;
-    color: #fff;
-    padding: 5px 10px;
-}
-.catalogue-name {
-    font-size: 20px;
-    font-weight: 500;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    color: #0c0c0c;
-    font-family: math;
-}
-.catalogue-details {
-    background: #fafafa;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: row;
-}
-.catalogue-details div {
-    border: 1px solid #000;
-    width: 100%;
-    font-weight: 400;
-    font-size: 16px;
-    font-family: math;
-    color: #161515;
-}
     </style>
 </head>
-
 <body>
-    <section class="min-height">
-        <div class="container-fluid no-padding">
-            <div class="catalogue-wrapper">
-                <div class="catalogue-filters">
-                    <h3>Filters</h3>
-                    <div class="checkboxDiv">
-                        <h4>Colors</h4>
-                        <div class="check_box">
-                            <input type="checkbox" value="Red" />
-                            <label>Red</label>
-                            <input type="checkbox" value="Blue" />
-                            <label>Blue</label>
-                            <input type="checkbox" value="Green" />
-                            <label>Green</label>
-                        </div>
-                    </div>
-                    <div class="checkboxDiv">
-                        <h4>Gender</h4>
-                        <div class="check_box">
-                            <input type="checkbox" value="Men" />
-                            <label>Men</label>
-                            <input type="checkbox" value="Women" />
-                            <label>Women</label>
-                        </div>
-                    </div>
-                    <div class="checkboxDiv">
-                        <h4>Price</h4>
-                        <div class="check_box">
-                            <input type="checkbox" value="250" />
-                            <label>0-250</label>
-                            <input type="checkbox" value="251" />
-                            <label>251-400</label>
-                            <input type="checkbox" value="450" />
-                            <label>450</label>
-                        </div>
-                    </div>
-                    <div class="checkboxDiv">
-                        <h4>Type</h4>
-                        <div class="check_box">
-                            <input type="checkbox" value="Polo" />
-                            <label>Polo</label>
-                            <input type="checkbox" value="Hoodie" />
-                            <label>Hoodie</label>
-                            <input type="checkbox" value="Basic" />
-                            <label>Basic</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="catalogue-products">
+    <div class="container">
+        <div class="sidebar">
+            <h3>Filters</h3>
 
+            <div class="checkboxDiv">
+                <h4>Colors</h4>
+                <div class="check_box">
+                    <input type="checkbox" value="Black" name="color" />
+                    <label>Black</label><br/>
+                    <input type="checkbox" value="Blue" name="color" />
+                    <label>Blue</label><br/>
+                    <input type="checkbox" value="Green" name="color" />
+                    <label>Green</label><br/>
+                    <input type="checkbox" value="Red" name="color" />
+                    <label>Red</label><br/>
+                    <input type="checkbox" value="White" name="color" />
+                    <label>White</label><br/>
+                    <input type="checkbox" value="Grey" name="color" />
+                    <label>Grey</label><br/>
+                    <input type="checkbox" value="Purple" name="color" />
+                    <label>Purple</label><br/>
+                    <input type="checkbox" value="Yellow" name="color" />
+                    <label>Yellow</label>
+                </div>
+            </div>
+
+            <div class="checkboxDiv">
+                <h4>Gender</h4>
+                <div class="check_box">
+                    <input type="checkbox" value="Men" name="gender" />
+                    <label>Men</label><br/>
+                    <input type="checkbox" value="Women" name="gender" />
+                    <label>Women</label>
+                </div>
+            </div>
+
+            <div class="checkboxDiv">
+                <h4>Price</h4>
+                <div class="check_box">
+                    <input type="checkbox" value="0-250" name="price" />
+                    <label>0-250</label><br/>
+                    <input type="checkbox" value="251-400" name="price" />
+                    <label>251-400</label><br/>
+                    <input type="checkbox" value="401-500" name="price" />
+                    <label>401-500</label><br/>
+                    <input type="checkbox" value="500+" name="price" />
+                    <label>500+</label>
+                </div>
+            </div>
+
+            <div class="checkboxDiv">
+                <h4>Type</h4>
+                <div class="check_box">
+                    <input type="checkbox" value="Polo" name="type" />
+                    <label>Polo</label><br/>
+                    <input type="checkbox" value="Hoodie" name="type" />
+                    <label>Hoodie</label><br/>
+                    <input type="checkbox" value="Basic" name="type" />
+                    <label>Basic</label>
                 </div>
             </div>
         </div>
-    </section>
-    <script>
-        async function fetchCatalogue() {
-            try {
-                const response = await fetch('catalogue.json');
-                if (!response.ok) {
-                    throw new Error('Network response was not OK')
-                }
-                const data = await response.json();
-                console.log(data);
-                renderCatalogue(data)
-            } catch (error) {
-                console.log('There has been a problem with your fetch operation:', error);
-            }
-        }
-        function renderCatalogue(catalogues) {
-            const catalogueProducts = document.querySelector('.catalogue-products');
-            catalogues.forEach((catalogue) => {
-                const card = document.createElement('div');
-                card.classList.add('card');
-                card.innerHTML = `
-                    <div class="badge">${catalogue.type}</div>
-                    <div class="catalogue-thumb">
-                        <img src="${catalogue.imageURL}" alt="${catalogue.name}">
-                        <div class="catalogue-name">${catalogue.name}</div>
-                    </div>
-                    <div class="catalogue-details">
-                        
-                        <div><b>Price</b> ${catalogue.price} ${catalogue.currency}</div>
-                        <div><b>Color</b> ${catalogue.color}</div>
-                        <div><b>Gender</b> ${catalogue.gender}</div>
-                        <div><b>Quantity</b> ${catalogue.quantity}</div>
-                    </div>
-                `;
-                catalogueProducts.appendChild(card);
-            })
-        }
-        fetchCatalogue();
-    </script>
-</body>
 
+        <div class="product-list">
+            <h3>Products</h3>
+            <div id="productContainer"></div>
+        </div>
+    </div>
+
+    <script src="./catalogue.js"></script>
+</body>
 </html>
