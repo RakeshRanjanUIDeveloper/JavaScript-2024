@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart with Filters</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #f4f4f4;
+}
+
+.container {
+    display: flex;
+    margin-top: 20px;
+}
+
+.sidebar {
+    width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+}
+
+.product-list {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.checkboxDiv {
+    margin-bottom: 20px;
+}
+
+.checkboxDiv h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.check_box input {
+    margin-right: 10px;
+}
+
+.product-card {
+    display: inline-block;
+    width: 180px;
+    margin: 10px;
+    background-color: #fff;
+    padding: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.product-card h5 {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.product-card p {
+    font-size: 14px;
+    color: #555;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h3>Filters</h3>
+
+            <div class="checkboxDiv">
+                <h4>Colors</h4>
+                <div class="check_box">
+                    <input type="checkbox" value="Black" name="color" />
+                    <label>Black</label><br/>
+                    <input type="checkbox" value="Blue" name="color" />
+                    <label>Blue</label><br/>
+                    <input type="checkbox" value="Green" name="color" />
+                    <label>Green</label><br/>
+                    <input type="checkbox" value="Red" name="color" />
+                    <label>Red</label><br/>
+                    <input type="checkbox" value="White" name="color" />
+                    <label>White</label><br/>
+                    <input type="checkbox" value="Grey" name="color" />
+                    <label>Grey</label><br/>
+                    <input type="checkbox" value="Purple" name="color" />
+                    <label>Purple</label><br/>
+                    <input type="checkbox" value="Yellow" name="color" />
+                    <label>Yellow</label>
+                </div>
+            </div>
+
+            <div class="checkboxDiv">
+                <h4>Gender</h4>
+                <div class="check_box">
+                    <input type="checkbox" value="Men" name="gender" />
+                    <label>Men</label><br/>
+                    <input type="checkbox" value="Women" name="gender" />
+                    <label>Women</label>
+                </div>
+            </div>
+
+            <div class="checkboxDiv">
+                <h4>Price</h4>
+                <div class="check_box">
+                    <input type="checkbox" value="0-250" name="price" />
+                    <label>0-250</label><br/>
+                    <input type="checkbox" value="251-400" name="price" />
+                    <label>251-400</label><br/>
+                    <input type="checkbox" value="401-500" name="price" />
+                    <label>401-500</label><br/>
+                    <input type="checkbox" value="500+" name="price" />
+                    <label>500+</label>
+                </div>
+            </div>
+
+            <div class="checkboxDiv">
+                <h4>Type</h4>
+                <div class="check_box">
+                    <input type="checkbox" value="Polo" name="type" />
+                    <label>Polo</label><br/>
+                    <input type="checkbox" value="Hoodie" name="type" />
+                    <label>Hoodie</label><br/>
+                    <input type="checkbox" value="Basic" name="type" />
+                    <label>Basic</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-list">
+            <h3>Products</h3>
+            <div id="productContainer"></div>
+        </div>
+    </div>
+
+    <script src="./catalogue.js"></script>
+</body>
+</html>
