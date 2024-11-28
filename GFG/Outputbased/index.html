@@ -57,6 +57,21 @@
         let p= new String('Hello'); //p is a string object (new String(“Hello”))
         console.log(o==p)
         console.log(o===p)
+
+
+        //continue statement skips an iteration if certain condition is met
+        for(let i=1; i<5; i++){
+            if(i=== 3) continue;
+            console.log(i)
+        }
+
+        function sayHi(){
+            return (()=> 0)()
+        }
+        console.log(typeof sayHi())
+
+        console.log(!!null);
+        
     </script>
 </body>
 </html>
