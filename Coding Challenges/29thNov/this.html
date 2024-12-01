@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //this keyword refers to object that is executing the current function. 
+
+        // in regular function
+        const person = {
+            fname:"Rakesh",
+            printName : function(){
+                console.log(this.fname)
+            }
+        }
+        person.printName();
+
+        //in global context
+        console.log(this);
+
+        //in Arrow Function - 'this' doesn't refer to 'person2', it refers to the global object
+        const person2={
+            lname:"Ranjan",
+            printLastName: () =>{
+                console.log(this.lname)
+            }
+        }
+        person2.printLastName()
+
+        //Using this in constructor
+        function Person3(name){
+            this.name = name;
+        }
+        const p = new Person3("Misu");
+        console.log(p.name)
+
+
+        var a=20;
+        {
+            console.log(a);
+            let b = 30;
+            console.log(b)
+        }
+        console.log(a);
+        console.log(b)
+    </script>
+</body>
+</html>
