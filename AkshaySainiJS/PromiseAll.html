@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const p1 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("P1 Success")
+            }, 3000);
+        });
+        const p2 = new Promise((resolve, reject) => {
+            // setTimeout(() => {
+            //     resolve('P2 Success')
+            // }, 1000);
+            setTimeout(()=>{
+                reject("P2 reject")
+            },1000)
+        })
+        const p3 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("P3 Success")
+            }, 2000);
+        })
+
+        Promise.all([p1, p2, p2])
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.error(err);
+            })
+    </script>
+</body>
+
+</html>
