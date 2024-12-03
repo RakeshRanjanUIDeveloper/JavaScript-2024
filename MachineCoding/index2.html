@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List Application</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    form {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Todo List Application</h1>
+
+  <!-- Form for adding/updating todos -->
+  <form id="todo-form">
+    <input type="hidden" id="todo-id" value="">
+    <label for="title">Title:</label>
+    <input type="text" id="title" placeholder="Enter todo title" required>
+    <button type="submit" id="form-submit-btn">Add Todo</button>
+  </form>
+
+  <!-- Table for displaying todos -->
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="todo-table-body">
+      <!-- Todos will be dynamically added here -->
+    </tbody>
+  </table>
+
+  <script>
+    const apiEndpoint = "https://jsonplaceholder.typicode.com/todos"; // Sample API
+    let todos = []; // Array to store todos (API + manually added)
+    const tableBody = document.getElementById('todo-table-body');
+    const form = document.getElementById('todo-form');
+    const titleInput = document.getElementById('title');
+    const todoIdInput = document.getElementById('todo-id');
+    const formSubmitBtn = document.getElementById('form-submit-btn');
+
+    // Fetch and display todos from the API
+    async function fetchTodos() {
+      try {
+        const response = await fetch(`${apiEndpoint}?_limit=5`); // Fetch first 5 todos
+        const apiTodos = await response.json();
+        todos = apiTodos; // Initialize with API data
+        renderTodos();
+      } catch (error) {
+        console.error("Error fetching todos:", error);
+      }
+    }
+
+    // Render todos in the table
+    function renderTodos() {
+      tableBody.innerHTML = ''; // Clear existing rows
+      todos.forEach((todo, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${todo.id || index + 1}</td>
+          <td>${todo.title}</td>
+          <td>
+            <button onclick="editTodo(${index})">Edit</button>
+            <button onclick="deleteTodo(${index})">Delete</button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    // Handle form submission
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const title = titleInput.value.trim();
+      const todoId = todoIdInput.value;
+
+      if (todoId) {
+        // Update existing todo
+        const index = parseInt(todoId, 10);
+        todos[index].title = title;
+        formSubmitBtn.textContent = "Add Todo"; // Reset button text
+      } else {
+        // Add new todo
+        const newTodo = { id: null, title };
+        todos.push(newTodo);
+      }
+
+      form.reset();
+      todoIdInput.value = ''; // Reset hidden input
+      renderTodos(); // Refresh the table
+    });
+
+    // Edit a todo
+    function editTodo(index) {
+      const todo = todos[index];
+      titleInput.value = todo.title;
+      todoIdInput.value = index; // Store the index in the hidden field
+      formSubmitBtn.textContent = "Update Todo"; // Change button text to indicate edit
+    }
+
+    // Delete a todo
+    function deleteTodo(index) {
+      todos.splice(index, 1); // Remove the todo from the array
+      renderTodos(); // Refresh the table
+    }
+
+    // Initial fetch of todos
+    fetchTodos();
+  </script>
+</body>
+</html>

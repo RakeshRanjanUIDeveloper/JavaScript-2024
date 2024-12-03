@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List Application</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    form {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Todo List Application</h1>
+
+  <!-- Form for adding/updating todos -->
+  <form id="todo-form" data-editing-id="">
+    <label for="title">Title:</label>
+    <input type="text" id="title" placeholder="Enter todo title" required>
+    <button type="submit" id="form-submit-btn">Add Todo</button>
+  </form>
+
+  <!-- Table for displaying todos -->
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="todo-table-body">
+      <!-- Todos will be dynamically added here -->
+    </tbody>
+  </table>
+
+  <script>
+    let todos = []; // Array to store todos
+    const tableBody = document.getElementById('todo-table-body');
+    const form = document.getElementById('todo-form');
+    const titleInput = document.getElementById('title');
+    const formSubmitBtn = document.getElementById('form-submit-btn');
+
+    // Render todos in the table
+    function renderTodos() {
+      tableBody.innerHTML = ''; // Clear existing rows
+      todos.forEach((todo, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${todo.title}</td>
+          <td>
+            <button onclick="editTodo(${index})">Edit</button>
+            <button onclick="deleteTodo(${index})">Delete</button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    // Handle form submission
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const title = titleInput.value.trim();
+      const todoId = form.getAttribute('data-editing-id');
+
+      if (todoId) {
+        // Update existing todo
+        todos[todoId].title = title;
+        form.setAttribute('data-editing-id', ''); // Reset editing state
+        formSubmitBtn.textContent = "Add Todo"; // Reset button text
+      } else {
+        // Add new todo
+        todos.push({ title });
+      }
+
+      form.reset();
+      renderTodos(); // Refresh the table
+    });
+
+    // Edit a todo
+    function editTodo(index) {
+      const todo = todos[index];
+      titleInput.value = todo.title;
+      form.setAttribute('data-editing-id', index); // Store index in a data attribute
+      formSubmitBtn.textContent = "Update Todo"; // Change button text to indicate edit
+    }
+
+    // Delete a todo
+    function deleteTodo(index) {
+      todos.splice(index, 1); // Remove the todo from the array
+      renderTodos(); // Refresh the table
+    }
+
+    // Initial rendering of empty table
+    renderTodos();
+  </script>
+</body>
+</html>
