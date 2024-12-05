@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h4{
+            font-size: 1.2vw;
+            font-family: Graphik;
+            line-height: 2;
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+    <h4>
+        After Printing start and End in the console. 
+        <br>
+        As we already know that timer of 5000ms was running and callback function was registered
+        <br>
+        callback function needs to go inside the call stack but it cant go directly
+        <br>
+        This callback function will go through callback queue 
+        <br>
+        so when timer expires this callback function moves inside the callback queue
+        <br>
+        And the event loop - the job of event loop is to check the callback queue and put this callback function into the call stack
+        <br>
+        So event loop acts like gate keeper and check if something we have in callback queue and if somthing and then it push inside the call stack.
+
+    </h4>
+    <script>
+        console.log("Start");
+        setTimeout(function cb(){
+            console.log("Call Back");
+        }, 5000)
+        console.log("End");
+    </script>
+</body>
+</html>

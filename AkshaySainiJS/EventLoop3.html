@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h4{
+            font-size: 1.2vw;
+            font-family: Graphik;
+            line-height: 2;
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+    <h4>
+        Microtask Queue and Callback Queue (Task Queue)  are two different types of queue in Javascript's event loop.
+        <br>
+        Microtask Queue have higher priority than callback queue.
+        <br>
+        Microtask Queue handles tasks like Promise and mutation observer. 
+        <br>
+        Callback Quee handles tasks like  I/O events (UI, setTimout) and it is processed after the Microtask Queue is empty.
+    </h4>
+    <button id="btn">Click</button>
+    <script>
+        console.log("Start");
+        document.getElementById('btn').addEventListener('click', function xyz(){
+            console.log("clicked");
+        })
+        fetch("https://jsonplaceholder.typicode.com/todos/1")
+            .then(()=>{
+                console.log("API result");
+            })
+        console.log("End");
+    </script>
+</body>
+</html>

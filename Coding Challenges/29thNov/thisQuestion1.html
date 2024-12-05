@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const shape ={
+            radius :10,
+            diameter(){
+                return this.radius*2;
+            },
+            perimeter:()=>{
+                return 2*Math.PI*this.radius
+            }
+        }
+        console.log(shape.diameter());
+        console.log(shape.perimeter());
+
+    </script>
+</body>
+</html>
