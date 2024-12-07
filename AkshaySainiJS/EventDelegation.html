@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <ul id="category">
+            <li id="laptops">Laptop</li>
+            <li id="cameras">Cameras</li>
+            <li id="shoes">Shoes</li>
+            <span>Hello</span>
+        </ul>
+    </div>
+    <div id="form">
+        <input type="text" id="name" data-uppercase />
+        <input type="text" id="mobile" />
+        <input type="text" id="email" data-uppercase />
+    </div>
+    <script>
+        document.querySelector('#category').addEventListener('click', function(e){
+            console.log(e.target.id);
+            if(e.target.tagName === 'LI'){  
+            window.location.href ='/'+e.target.id
+            }
+        })
+        document.querySelector('#form').addEventListener('keyup', function(e){
+            console.log(e)
+            if(e.target.dataset.uppercase != undefined){
+                e.target.value = e.target.value.toUpperCase()
+            }
+        })
+    </script>
+</body>
+</html>
