@@ -50,6 +50,9 @@
             justify-content: space-evenly;
         }
 
+        .ai-headers p{
+            cursor: pointer;
+        }
         .ai-header {
             border: 1px solid green;
             padding: 10px;
@@ -69,6 +72,7 @@
             background-color: lightblue;
             font-weight: bold;
         }
+
         .ai-contents-tab {
             display: none;
         }
@@ -76,6 +80,7 @@
         .ai-contents-tab.active {
             display: block;
         }
+
         .arrows {
             border: 1px solid darkblue;
             display: flex;
@@ -83,7 +88,13 @@
             align-items: center;
             width: 100px;
             border-radius: 50px;
+        }
+        .prev-arrow, .next-arrow{
             cursor: pointer;
+        }
+        .disabled {
+            opacity: 0.5;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -168,7 +179,6 @@
                     <div class="next-arrow">Next</div>
                 </div>
             </div>
-
             <div class="ai-contents">
                 <div class="ai-contents-tabs">
                     <div class="ai-contents-tab" data-tab="1">Tab 1 content</div>
@@ -202,39 +212,51 @@
         $(document).ready(function () {
             $('#section-1').removeClass('hide');
             $('#section-2').addClass('hide');
+
+            function arrowStates(headerId) {
+                $('.prev-arrow').toggleClass('disabled', headerId === 1);
+                $('.next-arrow').toggleClass('disabled', headerId === 5);
+            }
+
             $('.ai-tabs div').on('click', function () {
                 $('#section-1').addClass('hide');
                 $('#section-2').removeClass('hide');
-                var tabId = $(this).data('tab'); 
-                var sectionTabId = $(this).closest('.ai-box').data('tab'); 
+                var tabId = $(this).data('tab');
+                var sectionTabId = $(this).closest('.ai-box').data('tab');
                 $('.ai-contents-tab').removeClass('active');
                 $('.ai-contents-tab[data-tab="' + tabId + '"]').addClass('active');
                 $('.ai-header').removeClass('active');
                 $('.ai-header[data-tab="' + sectionTabId + '"]').addClass('active');
+                arrowStates(sectionTabId);
             });
 
-            $('.ai-header').on('click', function(){
-                var headerId = $(this).data('tab'); 
+            $('.ai-header').on('click', function () {
+                var headerId = $(this).data('tab');
                 $('.ai-header').removeClass('active');
                 $('.ai-header[data-tab="' + headerId + '"]').addClass('active');
                 $('.ai-contents-tab').removeClass('active');
-                var tabId = headerId === 4 || headerId === 5 ? (headerId * 3 - 3) : (headerId * 3 - 2); 
+                var tabId = headerId === 4 || headerId === 5 ? (headerId * 3 - 3) : (headerId * 3 - 2);
                 $('.ai-contents-tab[data-tab="' + tabId + '"]').addClass('active');
-            })
+                arrowStates(headerId);
+            });
 
+            $('.prev-arrow').on('click', function () {
+                var activeHeader = $('.ai-header.active');
+                var prevHeader = activeHeader.prev('.ai-header');
+                if (prevHeader.length === 0) {
+                    prevHeader = $('.ai-header').last();
+                }
+                prevHeader.click();
+            });
 
-            // let currentHeaderIndex = 1; 
-            // $('.next-arrow').on('click', function () {
-            //     currentHeaderIndex = (currentHeaderIndex % 5) + 1; 
-            //     var newHeader = $('.ai-header[data-tab="' + currentHeaderIndex + '"]');
-            //     newHeader.click();
-            // });
-
-            // $('.prev-arrow').on('click', function () {
-            //     currentHeaderIndex = (currentHeaderIndex - 2 + 5) % 5 + 1; 
-            //     var newHeader = $('.ai-header[data-tab="' + currentHeaderIndex + '"]');
-            //     newHeader.click();
-            // });
+            $('.next-arrow').on('click', function () {
+                var activeHeader = $('.ai-header.active');
+                var nextHeader = activeHeader.next('.ai-header');
+                if (nextHeader.length === 0) {
+                    nextHeader = $('.ai-header').first();
+                }
+                nextHeader.click();
+            });
 
             $('.ai-headers p').on('click', function () {
                 $('#section-2').addClass('hide');
@@ -242,6 +264,8 @@
                 $('.ai-header').removeClass('active');
                 $('.ai-contents-tab').removeClass('active');
             });
+
+            arrowStates($('.ai-header.active').data('tab'));
         });
     </script>
 </body>
