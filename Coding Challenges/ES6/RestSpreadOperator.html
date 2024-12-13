@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>rest and spread operators are denoted by three consecutive dots (...)</h2>
+    <h3>Rest operator
+        <ul>
+            <li>The rest operator is used to collect multiple values into a single array.</li>
+            <li>It is primarily used in function arguments and destructuring assignments to gather remaining elements into an array.</li>
+        </ul>
+    </h3>
+    <h3>Spread operator
+        <ul>
+            <li>The spread operator is used to unpack elements from an array or object. </li>
+            <li>It is mainly used for expanding or copying arrays and objects into individual elements or properties.</li>
+        </ul>
+    </h3>
+    <script>
+        function sum(...numbers){
+            return numbers.reduce((acc, cur) => acc + cur, 0)
+        }
+        console.log(sum(1,2,3,4,5));
+
+        const arr = [1,2,3,4,5];
+        const [first, second, ...rest]=arr;
+        console.log(first, second, rest);
+
+        const obj ={name:'rakehs', age:32, profession:'Engineer'}
+        const {name, ...rest1} = obj;
+        console.log(rest1);
+    </script>
+    <script>
+        const arr1=[1,2,3];
+        const arr2=[...arr1];
+        console.log(arr2);
+
+        const person ={name:"Rakesh", age:30};
+        const newPerson = {...person, profession:'Engineer'};
+        console.log(newPerson);
+
+        const a1=[1,2,3,4,5];
+        const a2=[6,7,8,9,10];
+        const mergedArray = [...a1,...a2];
+        console.log(mergedArray);
+
+        const person1 = { name: "John", age: 30 };
+        const person2 = { profession: "developer", age: 35 };
+        const mergedPerson = { ...person1, ...person2 };
+        console.log(mergedPerson)
+    </script>
+</body>
+</html>

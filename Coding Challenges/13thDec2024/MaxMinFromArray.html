@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // find max/min in a given array
+        const numbers  = [1,2,3,4,5,6,7,8,9];
+        let max = numbers[0];
+        let min = numbers[0];
+        for (let i = 0; i < numbers.length; i++) {
+            if(numbers[i] > max){
+                max= numbers[i]
+            }
+            if(numbers[i] <min){
+                min = numbers[i]
+            }
+        }
+        console.log(max);
+        console.log(min);
+
+      const max1=   numbers.reduce((acc, curr)=> acc > curr ? acc :curr);
+      const min1=   numbers.reduce((acc, curr)=>acc < curr ? acc : curr);
+      console.log(max1, min1);
+
+      const {max2, min2} = numbers.reduce((accumulator, currentValue)=>{
+            if(currentValue > accumulator.max2){
+                accumulator.max2 = currentValue;
+            }
+            if(currentValue < accumulator.min2){
+                accumulator.min2 = currentValue
+            }
+            return accumulator
+      }, {max2:numbers[0], min2:numbers[0]})
+      console.log("max:", max2);
+      console.log("min:", min2);
+    </script>
+</body>
+</html>
