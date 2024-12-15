@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Destructuring is a concise way to extract values from arrays or objects and assign them to variables.
+        <ul>
+            <li>Array destructuring allows us to unpack values from an array into individual variables.
+                <ul>
+                    <li>We can skip elements by leaving a blank space.</li>
+                    <li>We can assign default values to variables in case the array element is undefined.</li>
+                    <li>Array destructuring can be used to swap values between variables.</li>
+                </ul>
+            </li>
+            <li>Object destructuring allows us to extract properties from an object and assign them to variables.
+                <ul>
+                    <li>We can rename the destructured variables by using a colon</li>
+                    <li>We can assign default values if the property is missing or undefined.</li>
+                    <li>We can destructure nested objects.</li>
+                </ul>
+            </li>
+            <li>Combining Array and Object Destructuring:
+                <ul>
+                    <li>We can combine both array and object destructuring in one statement.</li>
+                </ul>
+            </li>
+        </ul>
+    </h1>
+    <script>
+        let numbers = [1,2,3];
+        let [a,b,c] = numbers;
+        console.log(a, b, c);
+        let [x,,z]= numbers;
+        console.log(x, z);
+        let [p,q,r,s=4]= numbers;
+        console.log(p,q,r,s);
+        let j=4, k=5;
+        [k,j] = [j,k];
+        console.log(j, k);
+    </script>
+    <script>
+        let person ={
+            name:"Rakesh",
+            age:30
+        }
+        let {name, age} = person;
+        console.log(name, age);
+        let{name:myName, age:myAge} = person;
+        console.log(myName, myAge);
+        let {city="Bangalore"} = person;
+        console.log(name, age, city);
+
+        let student ={
+            sname:'Ranjan',
+            classDetails:{
+                rollno: 1,
+                batch: 'A'
+            }
+        }
+        let {sname, classDetails:{rollno, batch}} = student;
+        console.log(sname, rollno, batch);
+    </script>
+    <script>
+        let data =[1, {address:"Bangalore", street:"Marathahalli"}, 3];
+        let [number, {address, street}]= data;
+        console.log(number, address, street);
+    </script>
+</body>
+</html>

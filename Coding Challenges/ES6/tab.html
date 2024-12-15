@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        .tabs-container {
+  width: 80%;
+  margin: auto;
+}
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.tab {
+  padding: 10px 20px;
+  background: lightgray;
+  border-radius: 5px;
+  text-align: center;
+}
+.tab.active {
+  background: darkgray;
+}
+.content-container {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+.content {
+  position: absolute;
+  width: 100%;
+  transition: all 0.5s ease-in-out;
+  transform: translateY(0);
+  opacity: 0;
+}
+.content.active {
+  top: 0;
+  opacity: 1;
+  transform: translateY(0);
+}
+.content.above {
+  top: -100%;
+  opacity: 0;
+}
+.content.below {
+  top: 100%;
+  opacity: 0;
+}
+
+    </style>
+</head>
+<body>
+    <div class="tabs-container">
+        <div class="content-container">
+            <div class="content" data-index="1">
+              <h2>Heading 1</h2>
+              <img src="image1.jpg" alt="Image 1">
+            </div>
+            <div class="content" data-index="2">
+              <h2>Heading 2</h2>
+              <img src="image2.jpg" alt="Image 2">
+            </div>
+            <div class="content" data-index="3">
+              <h2>Heading 3</h2>
+              <img src="image3.jpg" alt="Image 3">
+            </div>
+            <div class="content" data-index="4">
+              <h2>Heading 4</h2>
+              <img src="image4.jpg" alt="Image 4">
+            </div>
+          </div>
+        <div class="tabs">
+          <div class="tab" data-index="1">Tab 1</div>
+          <div class="tab" data-index="2">Tab 2</div>
+          <div class="tab" data-index="3">Tab 3</div>
+          <div class="tab" data-index="4">Tab 4</div>
+        </div>
+
+      </div>
+      <script>
+        $(document).ready(function () {
+  const contents = $(".content");
+  const tabs = $(".tab");
+
+  // Initialize the first tab and content as active
+  tabs.eq(0).addClass("active");
+  contents.eq(0).addClass("active");
+
+  tabs.on("click", function () {
+    const clickedIndex = $(this).data("index");
+
+    // Remove active classes from tabs
+    tabs.removeClass("active");
+    $(this).addClass("active");
+
+    // Loop through contents to adjust their positions
+    contents.each(function () {
+      const contentIndex = $(this).data("index");
+
+      if (contentIndex < clickedIndex) {
+        // Tabs before the clicked tab should move above
+        $(this).removeClass("below active").addClass("above");
+      } else if (contentIndex === clickedIndex) {
+        // The clicked tab content should be active and visible
+        $(this).removeClass("above below").addClass("active");
+      } else {
+        // Tabs after the clicked tab should move below
+        $(this).removeClass("above active").addClass("below");
+      }
+    });
+  });
+});
+
+
+      </script>
+</body>
+</html>

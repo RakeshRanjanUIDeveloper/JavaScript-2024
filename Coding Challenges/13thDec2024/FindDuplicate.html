@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Find duplicate element from an Array
+        const digits = [1, 2, 1, 3, 2, 4, 5, 4, 6, 7];
+        function findDuplicate(args) {
+            let uniqueNumbers = [];
+            let duplicateNumbers = []
+            for (let i = 0; i < args.length; i++) {
+                if (!uniqueNumbers.includes(args[i])) {
+                    uniqueNumbers.push(args[i]);
+                }else{
+                    duplicateNumbers.push(args[i])
+                }
+            }
+           // return {uniqueNumbers, duplicateNumbers]
+           return{
+             uniqueNumbers: uniqueNumbers,
+             duplicateNumbers:duplicateNumbers
+           }
+        }
+        // console.log(findDuplicate(digits));
+        const result = findDuplicate(digits);
+        console.log(result.uniqueNumbers);
+        console.log(result.duplicateNumbers);
+    </script>
+    <script>
+        const myNumber = [1,2,3,1,2,3,4,5,4,6];
+        const myDuplicateNumbers = myNumber.filter((num, i, arr) => {
+            console.log(arr.indexOf(num));
+            return arr.indexOf(num) != i
+        });
+        console.log(myDuplicateNumbers);
+    </script>
+</body>
+</html>

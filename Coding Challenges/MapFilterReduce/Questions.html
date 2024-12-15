@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // return an object that contains the count of each element.
+        // const nums = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4];
+        // const countOccurrences = nums.reduce((acc, num)=>{
+        //     console.log(acc[num]);
+        //     if(acc[num]){
+        //         acc[num] = acc[num] +1
+        //     }else{
+        //         acc[num] = 1
+        //     }
+        //     return acc;
+        // }, {})
+        // console.log(countOccurrences);
+
+        //find the most frequent string in the array.
+        const words = ["apple", "banana", "apple", "orange", "apple", "banana"];
+        const mostFrequentElement = words.reduce((acc, word)=>{
+            if(acc[word]){
+                acc[word] = acc[word] +1
+            }else{
+                acc[word] =1
+            }
+            return acc;
+        }, {})
+
+        let max =0;
+        let mostFrequentWord = "";
+        Object.keys(mostFrequentElement).forEach((word) =>{
+            if(mostFrequentElement[word]> max){
+                max = mostFrequentElement[word]
+                mostFrequentWord = word;
+            }
+            return mostFrequentWord;
+        })
+        
+        console.log(mostFrequentElement);
+        console.log(mostFrequentWord);
+
+        function removeDuplicates(arr) {
+            return arr.reduce((acc,num)=>{
+                if(!acc.includes(num)){
+                    acc.push(num)
+                }
+                return acc
+            },[])
+        }
+
+        const numbers = [1, 2, 2, 3, 4, 4, 5];
+        console.log(removeDuplicates(numbers));
+    </script>
+</body>
+</html>

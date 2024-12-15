@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        .min-height {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .ai-wrapper {
+            display: flex;
+            gap: 10px;
+            height: 79vh;
+            align-items: flex-start;
+        }
+
+        .ai-box {
+            width: 24%;
+            border: 2px solid #000;
+        }
+
+        .ai-image {
+            background: blue;
+            text-align: center;
+            color: #fff;
+        }
+
+        .ai-tabs {
+            padding: 5px;
+        }
+
+        .ai-tabs>div {
+            border: 1px solid #bebebe;
+            padding: 20px;
+            cursor: pointer;
+        }
+
+        .ai-headers {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .ai-headers p{
+            cursor: pointer;
+        }
+        .ai-header {
+            border: 1px solid green;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .ai-contents {
+            border: 1px solid red;
+            margin: 10px;
+            height: 80vh;
+            background: beige;
+            text-align: center;
+            font-size: 3vw;
+        }
+
+        .ai-header.active {
+            background-color: lightblue;
+            font-weight: bold;
+        }
+
+        .ai-contents-tab {
+            display: none;
+        }
+
+        .ai-contents-tab.active {
+            display: block;
+        }
+
+        .arrows {
+            border: 1px solid darkblue;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100px;
+            border-radius: 50px;
+        }
+        .prev-arrow, .next-arrow{
+            cursor: pointer;
+        }
+        .disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="section-1" class="min-height">
+        <div class="container">
+            <div class="ai-wrapper">
+                <!-- Box 1 -->
+                <div class="ai-box" data-tab="1">
+                    <div class="ai-image">
+                        <img src="" class="img-responsive" />
+                        <h2>Header 1</h2>
+                    </div>
+                    <div class="ai-tabs">
+                        <div data-tab="1">Tab 1</div>
+                        <div data-tab="2">Tab 2</div>
+                        <div data-tab="3">Tab 3</div>
+                    </div>
+                </div>
+                <!-- Box 2 -->
+                <div class="ai-box" data-tab="2">
+                    <div class="ai-image">
+                        <img src="" class="img-responsive" />
+                        <h2>Header 2</h2>
+                    </div>
+                    <div class="ai-tabs">
+                        <div data-tab="4">Tab 4</div>
+                        <div data-tab="5">Tab 5</div>
+                        <div data-tab="6">Tab 6</div>
+                    </div>
+                </div>
+                <!-- Box 3 -->
+                <div class="ai-box" data-tab="3">
+                    <div class="ai-image">
+                        <img src="" class="img-responsive" />
+                        <h2>Header 3</h2>
+                    </div>
+                    <div class="ai-tabs">
+                        <div data-tab="7">Tab 7</div>
+                        <div data-tab="8">Tab 8</div>
+                    </div>
+                </div>
+                <!-- Box 4 -->
+                <div class="ai-box" data-tab="4">
+                    <div class="ai-image">
+                        <img src="" class="img-responsive" />
+                        <h2>Header 4</h2>
+                    </div>
+                    <div class="ai-tabs">
+                        <div data-tab="9">Tab 9</div>
+                        <div data-tab="10">Tab 10</div>
+                        <div data-tab="11">Tab 11</div>
+                    </div>
+                </div>
+                <!-- Box 5 -->
+                <div class="ai-box" data-tab="5">
+                    <div class="ai-image">
+                        <img src="" class="img-responsive" />
+                        <h2>Header 5</h2>
+                    </div>
+                    <div class="ai-tabs">
+                        <div data-tab="12">Tab 12</div>
+                        <div data-tab="13">Tab 13</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-2" class="min-height hide">
+        <div class="container">
+            <div class="ai-headers">
+                <p>Back</p>
+                <div class="ai-header" data-tab="1">Header 1</div>
+                <div class="ai-header" data-tab="2">Header 2</div>
+                <div class="ai-header" data-tab="3">Header 3</div>
+                <div class="ai-header" data-tab="4">Header 4</div>
+                <div class="ai-header" data-tab="5">Header 5</div>
+                <div class="arrows">
+                    <div class="prev-arrow">Prev</div>
+                    <div class="next-arrow">Next</div>
+                </div>
+            </div>
+            <div class="ai-contents">
+                <div class="ai-contents-tabs">
+                    <div class="ai-contents-tab" data-tab="1">Tab 1 content</div>
+                    <div class="ai-contents-tab" data-tab="2">Tab 2 content</div>
+                    <div class="ai-contents-tab" data-tab="3">Tab 3 content</div>
+                </div>
+                <div class="ai-contents-tabs">
+                    <div class="ai-contents-tab" data-tab="4">Tab 4 content</div>
+                    <div class="ai-contents-tab" data-tab="5">Tab 5 content</div>
+                    <div class="ai-contents-tab" data-tab="6">Tab 6 content</div>
+                </div>
+                <div class="ai-contents-tabs">
+                    <div class="ai-contents-tab" data-tab="7">Tab 7 content</div>
+                    <div class="ai-contents-tab" data-tab="8">Tab 8 content</div>
+                </div>
+                <div class="ai-contents-tabs">
+                    <div class="ai-contents-tab" data-tab="9">Tab 9 content</div>
+                    <div class="ai-contents-tab" data-tab="10">Tab 10 content</div>
+                    <div class="ai-contents-tab" data-tab="11">Tab 11 content</div>
+                </div>
+                <div class="ai-contents-tabs" data-contents="5">
+                    <div class="ai-contents-tab" data-tab="12">Tab 12 content</div>
+                    <div class="ai-contents-tab" data-tab="13">Tab 13 content</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#section-1').removeClass('hide');
+            $('#section-2').addClass('hide');
+
+            function arrowStates(headerId) {
+                $('.prev-arrow').toggleClass('disabled', headerId === 1);
+                $('.next-arrow').toggleClass('disabled', headerId === 5);
+            }
+
+            $('.ai-tabs div').on('click', function () {
+                $('#section-1').addClass('hide');
+                $('#section-2').removeClass('hide');
+                var tabId = $(this).data('tab');
+                var sectionTabId = $(this).closest('.ai-box').data('tab');
+                $('.ai-contents-tab').removeClass('active');
+                $('.ai-contents-tab[data-tab="' + tabId + '"]').addClass('active');
+                $('.ai-header').removeClass('active');
+                $('.ai-header[data-tab="' + sectionTabId + '"]').addClass('active');
+                arrowStates(sectionTabId);
+            });
+
+            $('.ai-header').on('click', function () {
+                var headerId = $(this).data('tab');
+                $('.ai-header').removeClass('active');
+                $('.ai-header[data-tab="' + headerId + '"]').addClass('active');
+                $('.ai-contents-tab').removeClass('active');
+                var tabId = headerId === 4 || headerId === 5 ? (headerId * 3 - 3) : (headerId * 3 - 2);
+                $('.ai-contents-tab[data-tab="' + tabId + '"]').addClass('active');
+                arrowStates(headerId);
+            });
+
+            $('.prev-arrow').on('click', function () {
+                var activeHeader = $('.ai-header.active');
+                var prevHeader = activeHeader.prev('.ai-header');
+                if (prevHeader.length === 0) {
+                    prevHeader = $('.ai-header').last();
+                }
+                prevHeader.click();
+            });
+
+            $('.next-arrow').on('click', function () {
+                var activeHeader = $('.ai-header.active');
+                var nextHeader = activeHeader.next('.ai-header');
+                if (nextHeader.length === 0) {
+                    nextHeader = $('.ai-header').first();
+                }
+                nextHeader.click();
+            });
+
+            $('.ai-headers p').on('click', function () {
+                $('#section-2').addClass('hide');
+                $('#section-1').removeClass('hide');
+                $('.ai-header').removeClass('active');
+                $('.ai-contents-tab').removeClass('active');
+            });
+
+            arrowStates($('.ai-header.active').data('tab'));
+        });
+    </script>
+</body>
+
+</html>
