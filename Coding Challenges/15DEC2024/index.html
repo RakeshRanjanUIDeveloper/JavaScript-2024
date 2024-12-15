@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        console.log(a); //undefined
+        var a = 10;
+
+        // console.log(b);//ReferenceError: Cannot access 'b' before initialization
+        let b = 20;
+
+        //console.log(c);//ReferenceError: Cannot access 'c before initialization
+        const c = 30;
+
+        greet();
+        function greet() {
+            console.log("Hello") // Hello
+        }
+
+        //greet1();
+        var greet1 = function () {
+            console.log("heelo") // TypeError: greet1 is not a function
+        }
+
+        //greet2();
+        let greet2 = function () {
+            console.log("Heelllo") //ReferenceError: Cannot access 'greet2' before initialization
+        }
+
+        function test() {
+            console.log(x); // undefined
+            var x = 20;
+            console.log(x);// 20
+        }
+        test();
+
+        //console.log(z);
+        let z = 20; // reference error cant access z before initialization 
+
+        var m = 1;
+        function foo() {
+            console.log(m);
+            var m = 2;
+            console.log(m)
+        }
+        foo();
+
+
+        function processArray(arr, callback) {
+            // Apply callback to each element
+            let result = [];
+            for (let i = 0; i < arr.length; i++) {
+                result.push(callback(arr[i]))
+            }
+            return result
+        }
+        const doubleArray = processArray([1, 2, 3], (num) => num * 2);
+        console.log(doubleArray)
+
+
+        function factorial(n) {
+            let result = 1;
+            for (let i = 2; i <= n; i++) {
+                result = result * i
+            }
+            return result
+
+        }
+        console.log(factorial(5));
+
+
+        //func();
+        var func = function () {
+            console.log("Function Expression"); // Type error : func is not a function
+        };
+
+        function rectangleArea(length, breadth = 10) {
+            // Compute area
+            let area = length * breadth
+            console.log(area)
+        }
+        rectangleArea(20)
+
+
+        var x = 10;
+        function foo() {
+            var x = 20;
+            console.log(x);
+        }
+        foo();
+        console.log(x);
+
+
+        if (true) {
+            var x = 100;
+            let y = 20;
+        }
+        //console.log(x); // 
+       // console.log(y); //
+
+
+        let g = 10;
+        function outer() {
+            let f = 20;
+            function inner() {
+                console.log(g + f);
+            }
+            inner();
+        }
+        outer();
+
+
+        let aa = 5;
+function shadow() {
+    let aa = 10;
+    console.log(aa); //10
+}
+shadow();
+console.log(aa); //5
+
+
+function outer (){
+    let count =0
+    return function inner(){
+        count++
+        return count
+    }
+}
+const counter = outer();
+console.log(counter())
+console.log(counter())
+console.log(counter())
+
+
+function createMultiplier(multiplier){
+    return function (num){
+        return num * multiplier
+    }
+}
+const double = createMultiplier(2);
+console.log(double(5));
+
+
+function createCounter(){
+    let value =0;
+    return{
+        increment: function(){
+            value++
+            return value
+        },
+        decrement:function(){
+            value--
+            return value
+        }
+    }
+}
+
+const checkValue = createCounter();
+console.log(checkValue.increment());
+console.log(checkValue.decrement());
+
+
+for(var i=0; i<5; i++){
+   (function(x){
+    setTimeout(() => {
+        console.log(x)
+    }, 1000);
+   })(i)
+}
+
+for(let i=0; i<5; i++){
+    setTimeout(() => {
+        console.log(i)
+    }, 1000);
+}
+
+
+function add(ss){
+    return function(rr){
+        return ss+rr;
+    }
+}
+console.log(add(2)(3))
+
+
+let multiply = function (xx,yy){
+    return xx*yy
+}
+let multplyByTwo = multiply.bind(this, 2);
+console.log(multplyByTwo(9))
+
+
+
+function bothHositingClosure(){
+    console.log("ww");
+    let ww = 200;
+    return function(){
+        console.log(ww)
+    }
+}
+const result = bothHositingClosure();
+result();
+
+
+const generateID = (function(){
+    let id=0;
+    return function(){
+        id++;
+        return id
+    }
+})()
+console.log(generateID())
+console.log(generateID())
+console.log(generateID())
+console.log(generateID())
+    </script>
+</body>
+
+</html>

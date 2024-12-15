@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const person1 = { name: 'Alice' };
+        const person2 = { name: 'Bob' };
+        let greet = function () {
+            console.log("Hello, my name is " + this.name)
+        }
+        greet.call(person1);
+        greet.call(person2);
+
+
+        function sum(a, b, c) {
+            return a + b + c;
+        }
+        const numbers = [10, 20, 30];
+
+        console.log(sum.apply(null, numbers))
+
+
+        function multiply() {
+            return Array.from(arguments).reduce((acc, num) => acc * num, 1);
+        }
+        const digits = [2, 3, 4];
+
+        console.log(multiply.call(null, ...digits))
+        console.log(multiply.apply(null, digits))
+
+
+        function calculateArea(length, width) {
+            return length * width;
+        }
+        let calculateAreaWithLength5 = calculateArea.bind(null, 5);
+       console.log( calculateAreaWithLength5(4))
+
+       //https://chatgpt.com/c/675f3112-5624-800b-9a2a-b6d746e3cd92
+
+
+    </script>
+</body>
+
+</html>

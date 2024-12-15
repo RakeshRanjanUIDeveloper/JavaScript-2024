@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const person ={
+            fname: "Rakesh",
+            lname: "Ranjan",
+            printFullName: function(hometown, state, country){
+                console.log(this.fname +" "+this.lname + " is from "+hometown +" which is in "+state +" and country " +country)
+            }
+        }
+        const student ={
+            fname: "Misu",
+            lname: "Modi"
+        }
+
+      //person.printFullName.call(student, "Telaiya")
+      //person.printFullName.apply(student, ["Telaiya", "Jharkhand"])
+
+      const fullDetails = person.printFullName.bind(student, "Telaiya", "Jharkahnd");
+      fullDetails("India");
+
+      
+
+    </script>
+</body> 
+</html>
