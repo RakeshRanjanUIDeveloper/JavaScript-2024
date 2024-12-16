@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h5>this keyword refers to the object it belongs to, and its value is determined by how a function is called</h5>
+    <ul>
+        <li>Global Context:this refers to the window object</li>
+        <li>Inside Functions:
+            <ul>
+                <li>n non-strict mode, this refers to the global object.</li>
+                <li>In strict mode, this is undefined.</li>
+            </ul>
+        </li>
+        <li>Inside Methods: this refers to the object the method belongs to</li>
+        <li>Arrow Functions: They do not bind their own this. They inherit this from their surrounding lexical scope.
+        </li>
+        <li>In Constructors and Classes:this refers to the instance being created.</li>
+        <li>Explicit Binding: We can explicitly set the value of this using call, apply, or bind.</li>
+        <li>Event Listeners: this typically refers to the element that received the event.</li>
+    </ul>
+    <button>Button</button>
+    <script>
+        // 'use strict' 
+        console.log(this);
+        function show() {
+            console.log(this);
+        }
+        show()
+
+        const obj = {
+            name: "Rakesh",
+            greet() {
+                console.log(this.name);
+            }
+        }
+        obj.greet()
+
+        const obj1 = {
+            fname: "Rakesh",
+            greet1: () => {
+                console.log(this.fname);
+            }
+        }
+        obj1.greet1()
+
+        class Person {
+            constructor(name) {
+                this.name = name
+            }
+            greeting() {
+                console.log(this.name);
+            }
+        }
+        const p = new Person("Hello");
+        p.greeting()
+
+        const obj2 = { namee: 'Alice' }
+        function greet() {
+            console.log(this.namee);
+        }
+        greet.call(obj2);
+
+        document.querySelector('button').addEventListener('click', function(){
+            console.log(this);
+        })
+    </script>
+</body>
+
+</html>

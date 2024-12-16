@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Using bind() for Partial Application
+        // Problem: Create a function add() that takes two arguments and returns their sum.
+        //  Use bind() to create a new function addFive() that always adds 5 to its argument.
+        function add(a, b) {
+            return a + b;
+        }
+
+        Function.prototype.myBind = function(...args){
+            let obj = this;
+            let params = args.slice(1);
+            console.log(params);
+            console.log(args[0]);
+            return function(...args2){
+                return obj.apply(args[0], [...params, ...args2])
+            }
+        }
+        let addFive = add.myBind(null, 5);
+        console.log(addFive(5))
+    </script>
+</body>
+</html>

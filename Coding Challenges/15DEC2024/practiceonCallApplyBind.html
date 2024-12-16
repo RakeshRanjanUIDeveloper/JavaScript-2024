@@ -44,6 +44,38 @@
        //https://chatgpt.com/c/675f3112-5624-800b-9a2a-b6d746e3cd92
 
 
+       //Implement your own version of the bind() method.
+
+       const college ={
+        name:"SIET",
+        location:'Bijapur'
+       }
+       let printCollegeDetails = function(state, country){
+        console.log(this.name +" "+this.location+ " "+state + " "+country);
+       }
+
+       Function.prototype.myBind = function(...args){
+        let obj = this;
+        let params = args.slice(1);
+        return function(...args2){
+           return  obj.bind(args[0], ...params, ...args2)()
+        }
+       }
+       let myCollegeDetails = printCollegeDetails.myBind(college, "Karnataka")
+       myCollegeDetails("India")
+
+       
+       const person = {
+            name: 'John',
+            sayHello: function () {
+                console.log(`Hello, my name is ${this.name}`);
+            }
+        };
+        const anotherPerson = { name: 'Sarah' };
+        person.sayHello.call(anotherPerson);
+
+
+        
     </script>
 </body>
 
