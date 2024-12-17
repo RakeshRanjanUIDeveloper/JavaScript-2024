@@ -52,8 +52,21 @@
 
 
         function deepClone(obj) {
-            // Implement the function here
+            if(obj === null || typeof obj !== 'object'){
+                return obj
+            }
 
+            if(Array.isArray(obj)){
+                return obj.map(deepClone)
+            }
+
+            const newObj = {};
+            for(const key in obj){
+                if(obj.hasOwnProperty(key)){
+                    newObj[key] = deepClone(obj[key])
+                }
+            }
+            return newObj
         }
 
         const data = {
@@ -65,13 +78,29 @@
         const deepCopy = deepClone(data);
         deepCopy.b.d.e = 99;
         deepCopy.arr[2].f = 42;
-        console.log(data.b.d.e); // ?
-        console.log(data.arr[2].f); // ?
+        console.log(data.b.d.e); 
+        console.log(data.arr[2].f); 
 
         //https://chatgpt.com/c/67601e25-0f50-800b-88d5-3b9f90cd5de6
 
         //https://chatgpt.com/c/67601c5c-5708-800b-a707-b978888c1d75
 
+        const obbj = {
+            name: "Alice",
+            details: { age: 25, location: "Wonderland" }
+        };
+
+        const coppy = { ...obbj };
+
+        coppy.details.age = 30;
+
+        console.log(obbj.details.age); // 30
+        console.log(coppy.details.age); //
+        if (obbj.details === coppy.details) {
+        console.log("It's a shallow copy because nested objects are shared.");
+        } else {
+        console.log("It's a deep copy because nested objects are independent.");
+        }
     </script>
 </body>
 
