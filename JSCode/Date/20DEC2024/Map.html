@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Convert an array of strings to uppercase.
+        const stringArray = ['apple', 'cat', 'January'];
+        const result = stringArray.map((str) => str.toUpperCase());
+        console.log(result);
+
+        //Square each number in an array.
+        const numbers = [1,2,3,4,5,6];
+        const squaredNumber = numbers.map((num) => num*num);
+        console.log(squaredNumber);
+
+        //Extract the names of users from an array of user objects.
+        users=[
+            {name:"Rakesh", age:32},
+            {name:"Ranjan", age:29},
+            {name:"Misu", age:28}
+        ];
+        const allUserName = users.map((user) => user.name);
+        console.log(allUserName);
+
+        //Add a prefix like "Mr." or "Ms." to each name in an array.
+        const names = ["Rakesh", "Ranjan", "Sweta"];
+        const prefixNames = names.map((name) => `Mr. ${name}`);
+        console.log(prefixNames);
+
+        //Given an array of objects, add a new property to each object using map.
+        const details={
+            location: "Marathahalli",
+            city:"Bangalore"
+        }
+
+    </script>
+</body>
+</html>
