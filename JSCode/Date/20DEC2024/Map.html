@@ -32,11 +32,26 @@
         console.log(prefixNames);
 
         //Given an array of objects, add a new property to each object using map.
-        const details={
-            location: "Marathahalli",
-            city:"Bangalore"
-        }
+        const details=[
+            {location: "Marathahalli", city:"Bangalore"},
+            {location: "BTM", city:"Bangalore"}
+        ]
+        //const updatedDetails = details.map((detail) => Object.defineProperty(detail, "state", {value:"Karnatak"}));
+        const updatedDetails = details.map((detail) => ({...detail, state:"Karnataka"}))
+        console.log(updatedDetails);
 
+        //Convert an array of temperatures in Celsius to Fahrenheit.
+
+        const celsiusTemperatures = [20,10,30,50];
+        const fahrenheitTemperatures = celsiusTemperatures.map((temp) => temp*(9/5)+32)
+        console.log(fahrenheitTemperatures)
+
+        //Double the numbers in an array, then convert them to strings.
+        const numberrs = [1,2,3,4,5];
+        const doubleNumberrs = numberrs.map((num) => (num*2).toString());
+        console.log(doubleNumberrs)
+
+        
     </script>
 </body>
 </html>

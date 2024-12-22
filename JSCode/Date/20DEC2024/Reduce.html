@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Find the sum of all numbers in an array.
+        const numbers = [1,2,3,4,5,6];
+        const total = numbers.reduce((acc, curr) => acc+curr, 0);
+        console.log(total)
+
+        //Find the product of all numbers in an array.
+        const numberss = [1,2,3,4,5,6];
+        const totall = numberss.reduce((acc, curr) => acc*curr, 1);
+        console.log(totall)
+
+        //Count the number of occurrences of each element in an array.
+        const numbersss = [1,2,3,4,5,6,1,2,4];
+        const countEachNumber = numbersss.reduce((acc, curr) =>{
+            if(acc[curr]){
+                acc[curr] = acc[curr] + 1
+            }else{
+                acc[curr] = 1
+            }
+            return acc
+        }, {})
+        console.log(countEachNumber)
+
+        //Count the frequency of words in a string.
+        const text = "hello world hello universe world universe universe";
+        const words = text.split(' ');
+        const countEachWord = words.reduce((acc, curr) =>{
+            if(acc[curr]){
+                acc[curr] = acc[curr] +1
+            }else{
+                acc[curr] =1
+            }
+            return acc
+        }, {})
+        console.log(countEachWord)
+    </script>
+</body>
+</html>
