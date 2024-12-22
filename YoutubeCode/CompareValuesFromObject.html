@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const input1= {a:1, b:2, c:3, d:4};
+        const input2 = {a:1, b:2, c:5};
+
+       // const output = {a:1, b:2}
+
+        function commonValues(input1, input2){
+            let obj ={};
+            for(let i in input1){
+                console.log(input1[i])
+                if(input1[i] == input2[i]){
+                    obj[i] = input1[i]
+                }
+            }
+            return obj
+        }
+        console.log(commonValues(input1, input2))
+
+        console.log(Object.keys(input1))
+        const output = Object.keys(input1).reduce((acc, key) => {
+            console.log(input1[key])
+            if(input1[key] === input2[key]){
+                acc[key] = input1[key]
+            }
+            return acc;
+        }, {})
+        console.log(output)
+
+
+        
+    </script>
+</body>
+</html>
