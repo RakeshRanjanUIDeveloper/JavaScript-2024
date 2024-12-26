@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Create a Simple Promise
+        // Write a function createPromise that returns a promise which resolves with the value "Hello, Promises!" after 1 second.
+        const createPromise = () =>{
+            return new Promise((resolve, reject) =>{
+                setTimeout(() => {
+                    resolve("Hello Promises!")
+                }, 3000);
+            })
+        }
+        createPromise().then((message) =>{
+            console.log(message);
+        })
+        
+
+        //Handle a Resolved Promise
+        // Write a promise that resolves with a value and use .then() to log the resolved value.
+
+        // Create a promise that resolves
+        const promise = new Promise((resolve, reject) =>{
+            resolve("Promise has been resolved!")
+        })
+        // Handle the resolved promise
+        promise.then((value)=>{
+            console.log(value);
+        })
+
+        //Handle a Rejected Promise
+        // Create a promise that rejects with an error message. Handle the error using .catch().
+
+        const p = new Promise((resolve, reject) =>{
+           const success = false;
+           if(success){
+            resolve("The promise was resolved successfully!")
+           }else{
+            reject("The promise was rejected!");
+           }
+        })
+        p.then((value) =>{
+            console.log(value);
+        })
+        .catch((error) =>{
+            console.log(error);
+        })
+
+        //Chaining Promises
+        // Write a function that returns a promise. Chain multiple .then() calls to transform and log the data.
+
+        const myFunction = () =>{
+            return new Promise((resolve, reject) =>{
+                resolve(2)
+            })
+        }
+        myFunction().then((value) =>{
+            console.log("Initial Value", value);
+            return value +3
+        }).then((value)=>{
+            console.log("After first transformation", value);
+            return value +5
+        }).then((value)=>{
+            console.log("After second transformation", value);
+            return value
+        }).then((value) =>{
+            console.log("Final Value", value);
+        }).catch((error)=>{
+            console.log(error);
+        })
+
+
+        //Promise with setTimeout
+        // Create a promise that resolves after 2 seconds using setTimeout.
+
+        const lastPromise = new Promise((resolve, reject) =>{
+            setTimeout(() => {
+                resolve("Resolved after 2 sec")
+            }, 2000);
+        })
+        lastPromise.then((value)=>{
+            console.log(value);
+        })
+
+
+        
+    </script>
+</body>
+</html>

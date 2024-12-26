@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Promise.all Basic Example
+        // Write a function that takes multiple promises and resolves when all of them are resolved using Promise.all.
+
+        const handleMultiplePromises = (promises) =>{
+            return Promise.all(promises)
+        };
+
+        const promise1 = new Promise((resolve, reject) =>{
+            setTimeout(() => {
+                resolve("Promise 1 Resolved")
+            }, 1000);
+        })
+        const promise2 = new Promise((resolve, reject) =>{
+            setTimeout(() => {
+                resolve("Promise 2 Resolved")
+            }, 2000);
+        })
+        const promise3 = new Promise((resolve, reject) =>{
+            setTimeout(() => {
+                resolve("Promise 3 Resolved")
+            }, 3000);
+        })
+
+        handleMultiplePromises([promise1, promise2, promise3])
+            .then((values) => console.log(values))
+            .catch((error) => console.log(error))
+    </script>
+</body>
+</html>

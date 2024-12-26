@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Sequential Promise Execution
+        // Write a function that executes two promises sequentially, where the result of the first promise is passed as input to the second.
+
+        const firstPromise = (input) =>{
+            return new Promise((resolve, reject) =>{
+                setTimeout(() => {
+                    console.log("First Promise Resolved", input *2);
+                    resolve(input*2)
+                }, 1000);
+            })
+        }
+        const secondPromise = (input) =>{
+            return new Promise((resolve, reject) =>{
+                setTimeout(() => {
+                    console.log("Second Promise Input", input);
+                    resolve(input+10)
+                }, 1000);
+            })
+        }
+
+        const executeSequentially = (initialValue) =>{
+            return firstPromise(initialValue)
+                .then((firstResult) => {
+                    console.log("Result from first promise", firstResult)
+                    return secondPromise(firstResult)
+                })
+
+                .then((secondResult) =>{
+                    console.log("Final result from second promise", secondResult)
+                    return secondResult
+                })
+        }
+        executeSequentially(5)
+    </script>
+</body>
+</html>
