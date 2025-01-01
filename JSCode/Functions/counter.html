@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .min-height {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .counter-wrapper {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .buttons {
+            display: flex;
+        }
+
+        .btn {
+            width: 100%;
+            border: 2px solid #000;
+            margin: 1%;
+            background-color: cadetblue;
+            color: #fff;
+        }
+
+        .btn:hover {
+            color: #fff;
+        }
+
+        .count {
+            font-size: 2vw;
+            padding: 1%;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="min-height">
+        <div class="container-fluid no-padding">
+            <div class="counter-wrapper">
+                <div class="count">0</div>
+                <div class="buttons">
+                    <div class="btn increase-btn">Increase</div>
+                    <div class="btn reset-btn">Reset</div>
+                    <div class="btn decrease-btn">Decrease</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const btn = document.querySelectorAll('.btn')
+        btn.forEach((button) => {
+            button.addEventListener("click", function () {
+                let count = document.querySelector('.count');
+                let currentCount = parseInt(count.innerHTML)
+                let cls = this.classList;
+                console.log(cls);
+                switch(true){
+                    case cls.contains('increase-btn'):
+                        count.innerHTML = currentCount + 1 ;
+                        break;
+                    case cls.contains('reset-btn'):
+                        count.innerHTML =0
+                        break;
+                    case cls.contains('decrease-btn'):
+                        count.innerHTML = currentCount - 1 ;
+                        break;
+                    default:
+                        break;
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

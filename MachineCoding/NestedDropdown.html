@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nested Dropdown - Company, Industry, Product</title>
+    <style>
+        select {
+            margin: 10px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Nested Dropdown - Company, Industry, Product</h1>
+
+    <!-- Dropdowns for Company, Industry, and Product -->
+    <select id="company" onchange="fetchIndustries()">
+        <option value="">Select Company</option>
+    </select>
+
+    <select id="industry" onchange="fetchProducts()">
+        <option value="">Select Industry</option>
+    </select>
+
+    <select id="product">
+        <option value="">Select Product</option>
+    </select>
+
+    <script>
+        // Sample Data for Companies, Industries, and Products
+        const companies = [
+            { id: 1, name: "TechCorp" },
+            { id: 2, name: "FoodInc" }
+        ];
+
+        const industries = [
+            { companyId: 1, industries: ["Software", "Hardware"] },
+            { companyId: 2, industries: ["Food & Beverage", "Packaging"] }
+        ];
+
+        const products = [
+            { companyId: 1, industry: "Software", products: ["App Development", "Cloud Services"] },
+            { companyId: 1, industry: "Hardware", products: ["Laptops", "Smartphones"] },
+            { companyId: 2, industry: "Food & Beverage", products: ["Juices", "Snacks"] },
+            { companyId: 2, industry: "Packaging", products: ["Plastic Bottles", "Cardboard Boxes"] }
+        ];
+
+        // Populating Company Dropdown
+        function populateCompanies() {
+            const companySelect = document.getElementById('company');
+            companies.forEach(company => {
+                const option = document.createElement('option');
+                option.value = company.id;
+                option.textContent = company.name;
+                companySelect.appendChild(option);
+            });
+        }
+
+        // Fetch Industries based on Selected Company
+        function fetchIndustries() {
+            const companyId = document.getElementById('company').value;
+            const industrySelect = document.getElementById('industry');
+            const productSelect = document.getElementById('product');
+
+            // Reset industry and product dropdowns
+            industrySelect.innerHTML = '<option value="">Select Industry</option>';
+            productSelect.innerHTML = '<option value="">Select Product</option>';
+
+            if (companyId) {
+                const selectedIndustries = industries.find(ind => ind.companyId == companyId);
+                if (selectedIndustries) {
+                    selectedIndustries.industries.forEach(industry => {
+                        const option = document.createElement('option');
+                        option.value = industry;
+                        option.textContent = industry;
+                        industrySelect.appendChild(option);
+                    });
+                }
+            }
+        }
+
+        // Fetch Products based on Selected Industry and Company
+        function fetchProducts() {
+            const companyId = document.getElementById('company').value;
+            const industry = document.getElementById('industry').value;
+            const productSelect = document.getElementById('product');
+
+            // Reset product dropdown
+            productSelect.innerHTML = '<option value="">Select Product</option>';
+
+            if (companyId && industry) {
+                const selectedProducts = products.find(prod => prod.companyId == companyId && prod.industry === industry);
+                if (selectedProducts) {
+                    selectedProducts.products.forEach(product => {
+                        const option = document.createElement('option');
+                        option.value = product;
+                        option.textContent = product;
+                        productSelect.appendChild(option);
+                    });
+                }
+            }
+        }
+
+        // Initialize company dropdown on page load
+        window.onload = populateCompanies;
+    </script>
+    
+</body>
+</html>

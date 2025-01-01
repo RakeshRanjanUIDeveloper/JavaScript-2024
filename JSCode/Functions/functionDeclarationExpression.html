@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //A function declaration, also known as a function statement,
+        //It defines a function using the function keyword followed by the function name, parameters, and the function body.
+        //Function declarations are hoisted.
+        // We can call the function before its actual declaration in the code, and it will still work.
+        //Function declarations are scoped to the block
+        myFunc(5);
+        function myFunc(x){
+            console.log(x*2);
+        }
+
+        // A function expression involves creating a function and assigning it to a variable. 
+        //function expressions can be anonymous or have name as well for easier debugging
+        // Function expressions are not hoisted. 
+        //We must define the function before you can call it.
+        //Function expressions are useful for creating functions on the fly
+        // It can be used as arguments to other functions, returned from other functions, or assigned to variables.
+        const greet = function(name){
+            console.log(`Hello ${name}`);
+        }
+        greet("Rakesh");
+    </script>
+</body>
+</html>

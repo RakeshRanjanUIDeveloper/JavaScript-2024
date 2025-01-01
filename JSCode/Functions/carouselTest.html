@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .min-height{
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        .carousel-wrapper{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+        .carousel-content{
+            height: 200px;
+            width: 200px;
+            border: 2px solid black;
+            text-align: center;
+            display: none;
+        }
+        .carousel-controls{
+            position: absolute;
+            border: 2px solid black;
+            padding: 0.5%;
+            bottom: 20%;
+            width: 20%;
+            height: 3%;
+        }
+        .carousel-next{
+            right: 0;
+            position: absolute;
+            cursor: pointer;
+        }
+        .carousel-previous{
+            left: 0;
+            position: absolute;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <section class="min-height">
+        <div class="container">
+            <div class="carousel-wrapper">
+                <div class="carousel-content">1</div>
+                <div class="carousel-content">2</div>
+                <div class="carousel-content">3</div>
+                <div class="carousel-content">4</div>
+                <div class="carousel-content">5</div>
+                <div class="carousel-controls">
+                    <div class="carousel-next">Next</div>
+                    <div class="carousel-previous">Prev</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const nextBtn = document.querySelector('.carousel-next');
+        const prevBtn = document.querySelector('.carousel-previous');
+        const eachItem = document.querySelectorAll('.carousel-content');
+        const totalItem = document.querySelectorAll('.carousel-content').length;
+        let currentItem = 0
+        eachItem[currentItem].style.display='block';
+        function showItem(index){
+            for (let i=0; i<totalItem; i++) {
+                if(i=== index){
+                    eachItem[i].style.display='block'
+                }else{
+                    eachItem[i].style.display='none'
+                }
+            }
+        }
+
+        nextBtn.addEventListener('click', function(){
+            currentItem++
+            if(currentItem >= totalItem){
+                currentItem =0;
+            }
+            showItem(currentItem);
+        })
+        prevBtn.addEventListener('click', function(){
+            currentItem--;
+            if(currentItem < 0){
+                currentItem = totalItem-1;
+            }
+            showItem(currentItem);
+        })
+    </script>
+</body>
+</html>

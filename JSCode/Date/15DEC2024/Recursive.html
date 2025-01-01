@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Recursive Function - It is a function that invokes itslef to perform a repititive task until it reached to the base case</h1>
+    <h2>Base case it the a condition where recursion stops</h2>
+    <script>
+        function factorial(num){
+            if(num == 0){ // Base case
+                return 1;
+            }
+            
+           return num* factorial(num-1)
+        }
+        console.log(factorial(5));
+
+
+        function sumArray(arr){
+            if(arr.length === 0){
+                return 0;
+            }
+            return arr[0] + sumArray(arr.slice(1))
+        }
+        console.log(sumArray([1,2,3,4,5]));
+    </script>
+</body>
+</html>

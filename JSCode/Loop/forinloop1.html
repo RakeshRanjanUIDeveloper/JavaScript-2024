@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="output">
+
+    </div>
+    <script>
+        function forinLoop(){
+            let platform = {fname:"Geeks", mname:"For", lname:"Geeks"};
+            let text ="";
+            for (let key in platform) {
+                text += platform[key] + " ";
+            }
+            console.log(text);
+            document.querySelector('.output').innerHTML = text; 
+        }
+        forinLoop();
+    </script>
+</body>
+</html>

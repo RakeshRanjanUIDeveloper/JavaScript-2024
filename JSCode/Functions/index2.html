@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log(a); // undefined
+        var a = 10;
+        console.log(a); //10
+
+        console.log(b); // ReferenceError : Cannot access 'b' before initialization
+        let b = 20;
+    </script>
+    <script>
+        foo();
+        function foo(){
+            console.log('Function Hosited'); //  Function Hoisted.
+        }
+    </script>
+    <script>
+        //when bar() is invoked, bar is still undefined
+        //Calling undefined as if it were a function results in a TypeError: bar is not a function.
+        bar();
+        var bar = function(){
+            console.log("bar") // Type Error : bar is not a function
+        }
+    </script>
+     <script>
+        barr();
+        let barr = function(){
+            console.log("bar") // ReferenceError : Cannot access 'barr' before initialization
+        }
+    </script>
+    <script>
+        console.log(MyClass); //ReferenceError: Cannot access 'MyClass' before initialization
+        class MyClass{
+            constructor(){
+                this.name = "Example"
+            }
+        }
+    </script>
+</body>
+</html>

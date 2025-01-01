@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .min-height {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objectives-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .objective-heading {
+            border-bottom: 1px solid #000;
+            line-height: 16px;
+            text-align: center;
+            position: relative;
+
+        }
+
+        .objective-heading p {
+            color: #000;
+            font-family: Graphik;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 22px;
+            margin: 0;
+            background: #FFF;
+            position: relative;
+            bottom: -8px;
+            padding: 0 15px;
+            display: inline;
+        }
+
+        .objective-heading::after {
+            position: absolute;
+            content: '';
+            border: 5px solid #333;
+            border-radius: 50%;
+            right: 0;
+            top: 18px;
+        }
+
+        .objective-heading::before {
+            position: absolute;
+            content: '';
+            border: 5px solid #333;
+            border-radius: 50%;
+            left: 0;
+            top: 18px;
+        }
+
+        .objective-box {
+            padding: 10px;
+            border-radius: 8px;
+            background: #F8F8F8;
+            width: 32%;
+            height: 200px;
+        }
+
+        .objective-box h2 {
+            color: #B02B24;
+            font-family: Graphik;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            margin-top: 0;
+        }
+
+        .objective-box ul {
+            margin: 0;
+            padding-left: 20px;
+            list-style: disc;
+        }
+
+        .objective-box li {
+    color: #000;
+    font-family: Graphik;
+    font-size: 1vw;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.2;
+    padding-bottom: 10px;
+}
+        .img-responsive {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 20px auto;
+        }
+
+        .objective-click p {
+            border-radius: 20px;
+            background: #0078A3;
+            color: #FFF;
+            padding: 5px;
+        }
+
+        .objective-contents {
+            display: none;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .objective-contents.active {
+            display: flex;
+        }
+
+        .objective-content {
+            background: #ECFAFF;
+            width: 33%;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="min-height">
+        <div class="container">
+            <div class="objective-heading">
+                <p>Lilly’s Objectives</p>
+            </div>
+            <div class="objectives-wrapper">
+                <div class="objective-box">
+                    <h2>1. Delivery Excellence</h2>
+                    <ul>
+                        <li>Deliver Lilly’s Global Template to “Greenfield" and acquired sites including warehouses</li>
+                    </ul>
+                </div>
+                <div class="objective-box">
+                    <h2>2. Transparent Governance</h2>
+                    <ul>
+                        <li>Expansion of advanced warehouse capabilities, e.g., Extended Warehouse Management (EWM),
+                            interfacing to Manufacturing Execution System (MES)</li>
+                        <li>Enhance Lilly’s methods, governance, and delivery execution</li>
+                    </ul>
+                </div>
+                <div class="objective-box">
+                    <h2>3. Extensive Experience</h2>
+                    <ul>
+                        <li>Workshops and discussion focused on Design documents regarding surrounding application,
+                            integration, security, and list of customization (RIEF List) and Data requirements.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="objective-heading">
+                <p>Accenture’s Guiding Principles</p>
+            </div>
+            <img src="./objective-center.png" class="img-responsive" />
+            <div class="objective-heading objective-click">
+                <p>Lilly’s Outcomes Realized <span>+</span></p>
+            </div>
+            <div class="objective-contents">
+                <div class="objective-content">
+                    <ul>
+                        <li>Accelerate speed to market</li>
+                        <li>Manage Costs while supporting high growth demands</li>
+                    </ul>
+                </div>
+                <div class="objective-content">
+                    <ul>
+                        <li>Accelerate speed to market</li>
+                        <li>Manage Costs while supporting high growth demands</li>
+                    </ul>
+                </div>
+                <div class="objective-content">
+                    <ul>
+                        <li>Accelerate speed to market</li>
+                        <li>Manage Costs while supporting high growth demands</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        $(document).ready(function () {
+            $('.objective-click').click(function () {
+                $('.objective-contents').toggleClass('active');
+                if ($('.objective-contents').hasClass('active')) {
+                    $('.objective-click span').text('-'); 
+                } else {
+                    $('.objective-click span').text('+'); 
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

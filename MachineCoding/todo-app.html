@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        #todo-form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        #todo-input {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        #add-todo {
+            padding: 10px 20px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 4px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        #todo-list {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .todo-item {
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .todo-actions {
+            display: flex;
+            gap: 5px;
+        }
+        .edit-todo, .remove-todo, .save-todo {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .remove-todo {
+            background-color: #dc3545;
+        }
+        .save-todo {
+            display: none;
+            background-color: #28a745;
+        }
+        .edit-input {
+            width: 70%;
+            padding: 5px;
+            margin-right: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    
+<h1>To-Do List</h1>
+<form id="todo-form">
+    <input type="text" id="todo-input" placeholder="Add a new task">
+    <button type="submit" id="add-todo">Add</button>
+</form>
+<ul id="todo-list"></ul>
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        const todoForm = document.getElementById("todo-form");
+        const todoInput = document.getElementById("todo-input");
+        const todoList = document.getElementById("todo-list");
+        let todos = [];
+        function renderTodos (){
+            console.log('render calling');
+            todoList.innerHTML = "";
+            todos.forEach((todo, index)=>{
+                const li = document.createElement('li');
+                li.className ='todo-item';
+                li.innerHTML = `
+                    <input type="text" class="edit-input" value="${todo}">
+                    <span>${todo}</span>
+                    <div class="todo-actions">
+                        <button class="edit-todo" data-index="${index}">Edit</button>
+                        <button class="save-todo" data-index="${index}">Save</button>
+                        <button class="remove-todo" data-index="${index}">Remove</button>
+                    </div>
+                `;
+                todoList.appendChild(li);
+            })
+        }
+
+        //submit the form
+        todoForm.addEventListener("submit", function(e){
+                e.preventDefault();
+                const newTodo = todoInput.value.trim();
+                console.log(newTodo)
+                if(todos !== ''){
+                    todos.push(newTodo);
+                    renderTodos();
+                    todoInput.value ='';
+                }
+        })
+        //Edit the Form
+        todoList.addEventListener('click', function(e){
+            const index = e.target.getAttribute('data-index');
+            console.log(index)
+            if(e.target.classList.contains('remove-todo')){
+                console.log('delete')
+                todos.splice(index,1);
+                renderTodos();
+            }else if(e.target.classList.contains('edit-todo')){
+                console.log('edit');
+                const listItem = e.target.parentElement.parentElement;
+                const editInput = listItem.querySelector(".edit-input");
+                const saveButton = listItem.querySelector(".save-todo");
+                const editButton = listItem.querySelector(".edit-todo");
+                const taskText = listItem.querySelector("span");
+
+                // Show input field and hide the task text
+                editInput.style.display = 'inline-block';
+                editInput.focus();
+                taskText.style.display ='none';
+
+                // Show save button and hide edit button
+                saveButton.style.display = 'inline-block';
+                editButton.style.display = 'none';
+
+            }else if(e.target.classList.contains('save-todo')){
+                console.log('save')
+                const listItem = e.target.parentElement.parentElement;
+                const editInput = listItem.querySelector(".edit-input");
+                const taskText = listItem.querySelector("span");
+                todos[index]= editInput.value.trim();
+                renderTodos();
+            }
+        })
+    })
+</script>
+</body>
+</html>

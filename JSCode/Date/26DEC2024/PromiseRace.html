@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Promise.race Example
+        //Create two promises: one resolves after 2 seconds, and the other after 1 second. 
+        // Use Promise.race to log the result of the faster promise.
+        const promise1 = new Promise((resolve, reject) =>{
+           setTimeout(() => {
+                resolve("Promise 1 after 2 sec")
+           }, 2000);
+        })
+
+        const promise2 = new Promise((resolve, reject) =>{
+            setTimeout(() => {
+                resolve("Promise 2 after 1 sec")
+            }, 1000);
+        })
+
+        Promise.race([promise1, promise2])
+                .then((value) => console.log("Fater promise resolved", value))
+                .catch((error) => console.log(object));
+    </script>
+</body>
+</html>

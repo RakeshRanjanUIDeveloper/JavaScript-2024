@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const person1 = { name: 'Alice' };
+        const person2 = { name: 'Bob' };
+        let greet = function () {
+            console.log("Hello, my name is " + this.name)
+        }
+        greet.call(person1);
+        greet.call(person2);
+
+
+        function sum(a, b, c) {
+            return a + b + c;
+        }
+        const numbers = [10, 20, 30];
+
+        console.log(sum.apply(null, numbers))
+
+
+        function multiply() {
+            return Array.from(arguments).reduce((acc, num) => acc * num, 1);
+        }
+        const digits = [2, 3, 4];
+
+        console.log(multiply.call(null, ...digits))
+        console.log(multiply.apply(null, digits))
+
+
+        function calculateArea(length, width) {
+            return length * width;
+        }
+        let calculateAreaWithLength5 = calculateArea.bind(null, 5);
+       console.log( calculateAreaWithLength5(4))
+
+       //https://chatgpt.com/c/675f3112-5624-800b-9a2a-b6d746e3cd92
+
+
+       //Implement your own version of the bind() method.
+
+       const college ={
+        name:"SIET",
+        location:'Bijapur'
+       }
+       let printCollegeDetails = function(state, country){
+        console.log(this.name +" "+this.location+ " "+state + " "+country);
+       }
+
+       Function.prototype.myBind = function(...args){
+        let obj = this;
+        let params = args.slice(1);
+        return function(...args2){
+           return  obj.bind(args[0], ...params, ...args2)()
+        }
+       }
+       let myCollegeDetails = printCollegeDetails.myBind(college, "Karnataka")
+       myCollegeDetails("India")
+
+       
+       const person = {
+            name: 'John',
+            sayHello: function () {
+                console.log(`Hello, my name is ${this.name}`);
+            }
+        };
+        const anotherPerson = { name: 'Sarah' };
+        person.sayHello.call(anotherPerson);
+
+
+        
+    </script>
+</body>
+
+</html>

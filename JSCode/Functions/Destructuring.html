@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>It unpack values from arrays or properties from objects into distinct variables.</p>
+    <script>
+        const numbers = [1, 2, 3];
+        const [num1, num2, num3] = numbers;
+        console.log(num1, num2, num3);
+    </script>
+    <p>We can skip certain elements in the array by leaving a blank space between commas, </p>
+    <script>
+        const counts = [3, 5];
+        const [, count2, count3 = 7] = counts;
+        console.log(count2, count3);
+    </script>
+    <p>We can destructure nested arrays</p>
+    <script>
+        const nestedArray = [1, [2, 3], 4];
+        const [one, [two, three], four] = nestedArray;
+        console.log(one, two, three, four);
+    </script>
+    <p>Object destructuring allows you to extract properties from an object and assign them to variables with matching
+        names:</p>
+    <script>
+        const personObject = {
+            name: "Rakesh",
+            age: 34,
+            job: "SE"
+        }
+        const { name, age, job } = personObject;
+        console.log(name, age, job)
+    </script>
+    <p>Destructuring can also be applied to nested objects</p>
+    <script>
+        const person = {
+            title: "Rakesh",
+            address: {
+                street: "1st cross someshwara temple",
+                city: "Bangalore",
+                zip: {
+                    code: 560037,
+                    extended: 1234
+                }
+            }
+        }
+        const { title,
+            address: {
+                street,
+                city,
+                zip: { code, extended }
+            }
+        } = person;
+        console.log(title, street, city, code, extended)
+    </script>
+    <p>You can combine array and object destructuring in complex data structures</p>
+    <script>
+        const users = [
+            {
+                id: 1,
+                name: "Alice",
+                contact: {
+                    email: "alice@example.com",
+                    phone: "123-456-7890"
+                }
+            },
+            {
+                id: 2,
+                name: "Bob",
+                contact: {
+                    email: "bob@example.com",
+                    phone: "987-654-3210"
+                }
+            }
+        ];
+        const [
+            {
+                name: firstUserName,
+                contact: {
+                    email: firstUserEmail
+                }
+            },
+            {
+                name: secondUserName,
+                contact: {
+                    phone: secondUserPhone 
+                }
+            }
+        ] = users;
+        console.log(firstUserName,firstUserEmail, secondUserName,secondUserPhone)
+    </script>
+    <p>Destructuring is also useful when working with function parameters:</p>
+    <script>
+        const country = {
+            cname: "India",
+            city: "Bangalore"
+        }
+        function getDetails({cname, city}){
+            console.log(`I stay in ${city} which is an IT industry of ${city}`);
+        }
+        getDetails(country);
+    </script>
+    <p>Destructuring with Default Values in Function Parameters</p>
+    <script>
+        const myDetails ={
+            myname : "Rakesh",
+            myage : 32,
+           // myplace : "Bangalore"
+        }
+        function greet ({myname, myage, myplace= "Bangalore"}){
+            console.log(`Hello my name is  ${myname} and i stay in ${myplace} and my age is ${myage}`)
+        }
+        greet(myDetails)
+    </script>
+</body>
+
+</html>

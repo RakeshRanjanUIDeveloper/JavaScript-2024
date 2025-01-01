@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <button onclick="alert(this.tagName)">click</button>
+    <script>
+        const student ={
+            fname: 'rakesh',
+            printName:function(){
+                console.log(this.fname);
+            }
+        }
+        student.printName();
+
+        const student2={
+            fname:"Ranjan"
+        }
+
+        student.printName.call(student2);
+
+
+        const obj={
+            a:20,
+            myFunc:()=>{
+                console.log(this);
+            }
+        }
+        obj.myFunc();
+    </script>
+</body>
+</html>

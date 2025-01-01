@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>map() always returns a new array, where each element is the result of the callback function applied to the corresponding element of the original array.</p>
+    <p>map() creates a new array by applying a function to each element of the original array. It transforms the elements and returns a new array with the transformed values.</p>
+    <br>
+    <p>forEach() iterates over each element in the array and executes a provided function once for each element. It doesn't create a new array and is typically used for side effects (such as logging, updating external variables, or modifying elements of the array)</p>
+    <p>forEach() always returns undefined and does not produce a new array.</p>
+
+    <script>
+            const numbers = [1,2,3,4,5,6];
+            const doubleNumbers = numbers.map((num) =>{
+                return num*2
+            });
+            console.log(numbers);
+            console.log(doubleNumbers);
+
+            const counts = [1,2,3,4,5,6];
+            const doublecounts = counts.forEach((count) =>{
+                return count*2
+            });
+            console.log(counts);
+            console.log(doublecounts);
+    </script>
+</body>
+</html>

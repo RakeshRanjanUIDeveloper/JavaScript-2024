@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Goal: Multiply each number in an array by 2.
+        const numbers = [1,2,3,4,5];
+        const doubleNumbers =numbers.map((number)=>{
+            return number*2;
+        })
+        console.log(doubleNumbers);
+
+        //Extract the names of people from an array of objects.
+        const peoples =[
+            {name:"Rakesh", age:30},
+            {name:"Ranjan", age:30},
+            {name:"Misu", age:30},
+        ]
+        const names = peoples.map((people)=>{
+            return people.name
+        })
+        console.log(names);
+
+        // Flatten a nested array and multiply each number by 3.
+        const nestedArray = [
+            [1,2,3], [4,5,6], [7,8,9]
+        ]
+        const flattenArray = nestedArray.map(subArray=>subArray.map(number=>number*3)).flat();
+        console.log(flattenArray)
+
+        const dateStrings = ['2024-01-01', '2024-02-14', '2024-03-15'];
+        const formateDates = dateStrings.map((mydate) =>{
+            return new Date(mydate).toLocaleString()
+        })
+        console.log(formateDates)
+
+        let name = "Rakesh";
+        let newName = name.split('').map((ch)=>{
+            return 'A' + ch
+        })
+        console.log(newName)
+    </script>
+</body>
+</html>

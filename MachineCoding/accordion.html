@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .min-height {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .accordion-heading {
+            margin: 4px 0;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            border: 1px solid #545454;
+            overflow: hidden;
+            border-radius: 12px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .accordion-content {
+            padding: 20px;
+            display: none;
+        }
+
+        .accordion-arrow {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 10px 10px 0 10px;
+            border-color: #000 transparent transparent transparent;
+            margin-left: 5px;
+            transform: rotate(0);
+            transition: transform .3s ease;
+            background-color: #fff;
+            position: absolute;
+            right: 10px;
+        }
+
+        .accordion-arrow.open {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content.open {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="min-height">
+        <div class="container">
+            <div class="accordion-wrapper">
+                <div class="accordion-checkbox">
+                    <p>Is multiple open accordion allowed?
+                        <input type="checkbox" name="field1" id="multiple-open-checkbox">
+                    </p>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-heading">Heading one
+                        <span class="accordion-arrow"></span>
+                    </div>
+                    <div class="accordion-content">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                        Repellendus, recusandae!</div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-heading">Heading Two
+                        <span class="accordion-arrow"></span>
+                    </div>
+                    <div class="accordion-content">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                        Repellendus, recusandae!</div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-heading">Heading Three
+                        <span class="accordion-arrow"></span>
+                    </div>
+                    <div class="accordion-content">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                        Repellendus, recusandae!</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const accordionHeadings = document.querySelectorAll('.accordion-heading');
+        const accordionCheckbox = document.getElementById('multiple-open-checkbox');
+        accordionHeadings.forEach((heading) => {
+            heading.addEventListener('click', function () {
+                const accordionArrow = this.querySelector('.accordion-arrow');
+                const accordionContent = this.nextElementSibling;
+
+                if(!accordionCheckbox.checked){
+                    document.querySelectorAll('.accordion-item').forEach((item)=>{
+                        const content = item.querySelector('.accordion-content');
+                        const arrow = item.querySelector('.accordion-arrow');
+                        if(content !== accordionContent){
+                            content.classList.remove('open');
+                            arrow.classList.remove('open');
+                        }
+                    })
+                }
+                accordionArrow.classList.toggle('open');
+                accordionContent.classList.toggle('open');
+            })
+        })
+        accordionCheckbox
+    </script>
+</body>
+
+</html>

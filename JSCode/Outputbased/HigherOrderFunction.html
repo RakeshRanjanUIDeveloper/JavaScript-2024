@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Higher Order Function
+        //A function which takes another function as an argument or returns a function from it.
+        //Asynchronous Programming, Flexibility and Reusability, Control Flow Management
+        //Callback Hell, Difficulty in Managing Flow, Error Handling Challenges, 
+
+        const radius = [1,2,3,4,5];
+        const area = function(radius){
+            return Math.PI*radius*radius
+        }
+        const circumference = function(radius){
+            return 2*Math.PI*radius
+        }
+        const diameter = function(radius){
+            return 2*radius
+        }
+        const calculate = function(radius, logic){
+            const output = [];
+            for(i=0; i<radius.length; i++){
+                output.push(logic(radius[i]))
+            }
+            return output
+        }
+
+        Array.prototype.calculate1 = function(logic){
+            const output = [];
+            for(i=0; i<this.length; i++){
+                output.push(logic(this[i]))
+            }
+            return output
+        }
+
+        console.log(radius.calculate1(area));
+        console.log(calculate(radius, area));
+        console.log(calculate(radius, circumference));
+        console.log(calculate(radius, diameter));
+        // Here calculate is a Higher Order Function
+        // area, circumference are the callback function
+
+    </script>
+</body>
+</html>

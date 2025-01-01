@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Write a function sayHello that takes a name and a callback function. 
+        // The callback should print a greeting message using the name.
+
+        function sayHello(name, callback) {
+            callback(name)
+        }
+        // function greet(name){
+        //     console.log("Hello", name);
+        // }
+        sayHello("Rakesh", (name) => console.log("Hello", name))
+
+
+        //Create a function executeCallback that accepts a callback and calls it.
+
+        function executeCallback(callback) {
+            callback();
+        }
+        executeCallback(function () {
+            console.log("I am the callback");
+        })
+
+
+        //Write a function calculate that accepts two numbers and a callback. 
+        // The callback should perform an operation (e.g., addition or multiplication) on the two numbers.
+
+        function calculate(a, b, callback) {
+            return callback(a, b)
+        }
+        const result = calculate(5, 3, (a, b) => a + b);
+
+        console.log(result);
+
+
+        // Implement a custom forEach function that takes an array and a callback, 
+        // then executes the callback for each element in the array.
+
+        function myForEach(array, callback) {
+            for (let i = 0; i < array.length; i++) {
+                callback(array[i], i, array)
+            }
+        }
+        myForEach([1, 2, 3, 4, 5], function (element, index, array) {
+            console.log(`Element: ${element}, Index: ${index}`);
+        })
+
+        // Write a function filterArray that takes an array and a callback. 
+        // The callback should return true or false to determine which elements to keep in the array.
+
+        function filterArray(array, callback) {
+            let result = []
+            for (let i = 0; i < array.length; i++) {
+                if (callback(array[i], i, array)) {
+                    result.push(array[i])
+                }
+            }
+            return result
+        }
+
+        let output = filterArray([1, 2, 3, 4, 5], (element) => element > 3);
+        console.log(output);
+
+        //Create a custom map function that accepts an array and a callback. 
+        // The callback should transform each element and return a new array.
+
+        function customMap(array, callback) {
+            let result = [];
+            for (let i = 0; i < array.length; i++) {
+                result.push(callback(array[i], i, array))
+            }
+            return result
+        }
+        let doubleOutput = customMap([1, 2, 3, 4, 5], (element) => element * 2);
+        console.log(doubleOutput);
+
+
+        //Write a function delayedExecution that takes a callback and a delay (in milliseconds).
+        // It should execute the callback after the specified delay using setTimeout.
+
+        function delayedExecution(delay, callback) {
+            setTimeout(() => {
+                callback();
+            }, delay);
+        }
+
+        delayedExecution(5000, () => console.log("hello"))
+
+        //Write a function sortArray that accepts an array and a callback. 
+        // The callback should define the custom sorting logic.
+
+        function sortArray(array, callback) {
+            return array.sort(callback)
+        }
+
+        let sortedArray = sortArray([1, 7, 6, 2, 9, 3, 8, 4, 5], (a, b) => a - b);
+        console.log(sortedArray);
+
+        // Implement a function chainCallbacks that accepts multiple callbacks and executes them in sequence.
+
+        function chainCallbacks(...callbacks){
+            return function(initialValue){
+                return callbacks.reduce((acc, callback) => callback(acc), initialValue);
+            }
+        }
+        function func1(value){
+            console.log("F1 executed");
+            return value +1
+        }
+        function func2(value){
+            console.log("F2 Executed");
+            return value*2
+        }
+        function func3(value){
+            console.log("F3 Executed");
+            return value+2
+        }
+       const chained=  chainCallbacks(func1, func2, func3)
+       console.log(chained(4));
+
+       //Write a function processData that takes a number and a callback. 
+       // If the number is negative, pass an error to the callback;
+       //  otherwise, pass the square of the number.
+       function processData(number, callback){
+            if(number <0){
+                callback(new Error("Number is negative"))
+            }else{
+                callback(null, number*number)
+            }
+       }
+       var outputs = processData(-2, function(err, result){
+            if(err){
+                console.error("Error", err.message);
+            }else{
+                console.log("Result", result);
+            }
+       })
+    </script>
+</body>
+
+</html>

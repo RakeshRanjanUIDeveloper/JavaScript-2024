@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            margin: 0px 0 150px;
+            font-family: "Noto Sans", sans-serif;
+        }
+
+        :root {
+            --white: #fff;
+            --darkblue: #1b4965;
+            --lightblue: #edf2f4;
+        }
+
+        .container {
+            margin: 0 auto;
+            display: block;
+            width: 95%;
+        }
+
+        .container > h2:first-child {
+            text-align: center;
+        }
+
+        .product-container {
+            width: 100%;
+            margin: 20px auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .product-header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .search-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-wrapper input {
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .view-options {
+            display: flex;
+            align-items: center;
+        }
+
+        .view-options label {
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .view-options select {
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+
+        .product-list {
+            max-width: 90%;
+            margin: auto;
+        }
+
+        .product-item {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-configuration,
+        .product-pricing {
+            padding: 0 15px;
+        }
+
+        .product-configuration h2,
+        .product-pricing h2 {
+            margin: 0 0 10px;
+        }
+
+        .product-configuration h3,
+        .product-configuration h4,
+        .product-pricing h3,
+        .product-pricing h4 {
+            margin: 0;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="min-height">
+        <div class="container">
+            <h2>Product Dashboard</h2>
+            <div class="product-container">
+                <div class="product-header">
+                    <div class="search-wrapper">
+                        <input type="text" id="search-input" placeholder="Search...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="view-options">
+                        <label for="rows-select">Show rows:</label>
+                        <select id="rows-select">
+                            <option value="10">10</option>
+                            <option value="50">50</option>
+                            <option value="75">75</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="product-list">
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        let productData = [];
+        const API_URL = 'https://dummyjson.com/products';
+        const productList = document.getElementsByClassName('product-list')[0];
+        async function fetchProductData(){
+            try {
+                const response = await fetch(API_URL);
+                if(!response.ok){
+                    throw new Error(`HTTP Error!! status ${response.status}`)
+                }
+                const data = await response.json();
+                let productData = data.products;
+                displayProductItem(productData)
+            } catch (error) {
+                console.log('Error Fetching data', error);
+            }
+        }
+        function displayProductItem(productData){
+            productList.innerHTML = '';
+            productData.forEach(product => {
+                productList.innerHTML += `
+                    <div class="product-item">
+                        <div class="product-image">
+                            <img src=${product.thumbnail} class="img-responsive" />
+                        </div>
+                        <div class="product-configuration">
+                            <h2>${product.title}</h2>
+                            <h3>${product.rating}</h3>
+                            <h4>${product.warrantyInformation}</h4>
+                        </div>
+                        <div class="product-pricing">
+                            <h2>${product.price}</h2>
+                            <h3>${product.discountPercentage}</h3>
+                            <h4>${product.returnPolicy}</h4>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        // Fetch the product data when the page loads
+        window.onload = fetchProductData;
+    </script>
+</body>
+
+</html>

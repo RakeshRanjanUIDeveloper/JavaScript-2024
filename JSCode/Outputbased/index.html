@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let x ={
+            a:1,
+            b:2
+        }
+        let y = Object.keys(x);//Object.keys() method is used to retrieve an array
+        console.log(y)
+        console.log(y.length)
+
+
+        let a = '{"b":1, "c":2}';
+        let b = JSON.parse(a); //JSON.parse() method encoded string a into a JavaScript object
+        console.log(b)
+        console.log( typeof b)
+
+        let v= 0.1 + 0.2;
+        console.log(v)
+        let w =0.3;
+        console.log(w)
+        console.log(v==w)
+
+        let e= false;
+        let f= "0";
+        let g = 0;
+        console.log(e==f);
+        console.log(e==g)
+
+        let h=[]; //an empty/non-empty array [] is a truthy value when coerced to a Boolean.
+        console.log(Boolean(h))
+
+        let i=Infinity;
+        console.log(typeof i)
+
+
+        let l = "5";
+        let m= 2;
+        console.log(l+m);
+        console.log(l-m)
+
+
+        //arrow functions do not have their own this
+        //this inside an arrow function in the global scope would typically point to the window object.
+        let n = () =>{
+            console.log(this)
+        }
+        n();
+
+        let o="Hello";
+        let p= new String('Hello'); //p is a string object (new String(“Hello”))
+        console.log(o==p)
+        console.log(o===p)
+
+
+        //continue statement skips an iteration if certain condition is met
+        for(let i=1; i<5; i++){
+            if(i=== 3) continue;
+            console.log(i)
+        }
+
+        function sayHi(){
+            return (()=> 0)()
+        }
+        console.log(typeof sayHi())
+
+        console.log(!!null);
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const sentence = "I am learning javascript daily";
+        const setenceArray = sentence.split(' ');
+        console.log(setenceArray);
+        let maxLength = 1;
+        function findLongestWord(setenceArray) {
+            for (let i = 0; i < setenceArray.length; i++) {
+                console.log(setenceArray[i].length)
+                if(setenceArray[i].length >= maxLength){
+                    maxLength = setenceArray[i].length
+                }
+            }
+            return maxLength
+        }
+        console.log("max length is ", findLongestWord(setenceArray))
+
+
+        const newsentence = "am i";
+        const maxWords = newsentence.split(' ').reduce((acc, curr) => Math.max(acc, curr.length), 0)
+        console.log(maxWords)
+    </script>
+</body>
+
+</html>

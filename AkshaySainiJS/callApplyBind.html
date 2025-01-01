@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let name1 ={
+        //     fname: "Rakesh",
+        //     lname:"Ranjan",
+        //     printFullName:function(){
+        //         console.log(this.fname + " " +this.lname);
+        //     }
+        // }
+        let name1 ={
+            fname: "Rakesh",
+            lname:"Ranjan",
+        }
+        let printFullName = function(hometown, state){
+                console.log(this.fname + " " +this.lname + " is from " +hometown +" " +state);
+         }
+
+        // printFullName.call(name1, "Ranchi", "Jharkhand");
+        printFullName.apply(name1, ["Ranchi", "Jharkhand"]);
+
+        let name2 = {
+            fname:"Sachin",
+            lname:"Tendulkar"
+        }
+        // printFullName.call(name2, "Mumbai", "Maharashtra")
+        printFullName.apply(name2, ["Mumbai", "Maharashtra"])
+
+        let printDetails = printFullName.bind(name1, "Ranchi", "Jharkhand!!");
+        console.log(printDetails);
+        printDetails();
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Higher-order functions are functions that do at least one of the following:
+        <ul>
+            <li>Take one or more functions as arguments (called callback functions).</li>
+            <li>Return another function as their result.</li>
+        </ul>
+    </h3>
+    <script>
+        //Scenario: Multiplying each element in an array by a number.
+        // We use the map() method, a higher-order function.
+
+        function multiplyBy2(num) {
+            return num * 2
+        }
+        const numbers = [1, 2, 3, 4, 5];
+        const result = numbers.map(multiplyBy2)
+        console.log(result);
+
+        //Example 2: A Higher-Order Function that Returns a Function
+        //Scenario: Creating a function generator for mathematical operations.
+
+        function createMultiplier(multiplier){
+            return function(num){
+                return num * multiplier
+            }
+        }
+        const double = createMultiplier(2);
+        const tripple = createMultiplier(3);
+        console.log(double(5));
+        console.log(tripple(5));
+
+        const student = [
+            {name:'rakesh', age:23},
+            {name:'ranjan', age:25},
+            {name:'misu', age:20},
+        ]
+        student.sort((a,b) => a.age - b.age);
+        console.log(student);
+
+        //Scenario: Filtering even numbers from an array.
+        const digits = [2,4,6,1, 3,8,10];
+       const evenNumbers = digits.filter((num) => num%2===0);
+       console.log(evenNumbers);
+
+       function square(num){
+        return num*num
+       }
+       function increment(num){
+        return num +1
+       }
+
+       function compose(func1, func2){
+            return function(num){
+                //return func1(func2(num))
+                return func2(func1(num))
+            }
+       }
+
+       const squareAfterIncrement = compose(square, increment)
+       console.log(squareAfterIncrement(10));
+    </script>
+
+</body>
+
+</html>

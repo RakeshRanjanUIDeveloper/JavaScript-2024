@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>click</button>
+    <script>
+        function multiplyBy2(num) {
+            return num * 2;
+        }
+        function add10(num) {
+            return num + 10;
+        }
+        function subtract5(num) {
+            return num - 5;
+        }
+
+        const chain = subtract5.bind(null, add10(multiplyBy2(5)))
+        console.log(chain());
+
+
+        const obj = {
+            name: 'Button',
+            handleClick: function () {
+                console.log(this.name);
+            }
+        };
+
+        const button = document.querySelector('button');
+        button.addEventListener('click', obj.handleClick.bind(obj))
+
+
+        const person = {
+            name: 'Alice',
+            sayHello: function () {
+                console.log(`Hello, my name is ${this.name}`);
+            }
+        };
+
+        const anotherPerson = { name: 'Bob' };
+        person.sayHello.call(anotherPerson)
+    </script>
+</body>
+
+</html>

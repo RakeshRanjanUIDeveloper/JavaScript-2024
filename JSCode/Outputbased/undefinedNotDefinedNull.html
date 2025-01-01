@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Variables: When you declare a variable but do not initialize it, its value is undefined.
+        // Function Return: If a function does not return a value explicitly, it returns undefined by default.
+        // Object Properties: Accessing a property that does not exist on an object will return undefined
+
+        let a;
+        console.log(a); // undefined
+
+        function myFunc(){
+
+        }
+        console.log(myFunc()) // undefined
+
+        const person = {
+            name :"Rakesh"
+        }
+        console.log(person.age); //undefined
+
+        //Trying to use a variable that has not been declared will cause an error.
+
+        console.log(b); // b is not defined.
+
+        //null is a special value that represents the intentional absence of any object value.
+
+        let user = {
+            name:"ranjan",
+            age: 25
+        }
+        user.address = null;
+        console.log(user.address); // null
+    </script>
+</body>
+</html>

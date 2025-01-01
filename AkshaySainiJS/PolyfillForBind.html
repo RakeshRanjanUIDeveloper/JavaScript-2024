@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let name ={
+            fname:"Rakesh",
+            lname:"Ranjan"
+        }
+        let printName = function(city, state){
+            console.log(this.fname + " " + this.lname + " is from "+city+" "+state);
+        }
+
+        Function.prototype.mybind = function(...args){
+            let obj = this;
+            let params = args.slice(1);
+            return function(...args2){
+                obj.apply(args[0], [...params, ...args2])
+            }
+        }
+
+        let printMyName = printName.mybind(name, "Koderma");
+        printMyName("Jharkhand");
+    </script>
+</body>
+</html>

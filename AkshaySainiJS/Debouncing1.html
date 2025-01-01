@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" onkeyup="betterFunction()" />
+    <script>
+        let counter =0
+        const getData = () =>{
+            console.log("Fetching data...", counter++);
+        }
+
+        const doSomething = function(fn, d){
+            let timer
+            return function(){
+                let context = this,
+                args = arguments;
+                clearTimeout(timer)
+                timer = setTimeout(() => {
+                    fn.apply(context, arguments)
+                }, d);
+            }
+        }
+
+        const betterFunction = doSomething(getData, 300);
+
+    </script>
+</body>
+</html>

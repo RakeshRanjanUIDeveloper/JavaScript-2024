@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function x(){
+            var a =20;
+            function y(){
+                console.log(a);
+            }
+            return y
+        }
+        const z = x();
+        console.log(z);
+        // Fuction when they are returned from another function its still maintain their lexical scope
+        // They remeber where they actually were present.
+        // Whenerver we can z() , it remeber it was present in lexical env so able to fetch value of a
+        z();
+    </script>
+</body>
+</html>

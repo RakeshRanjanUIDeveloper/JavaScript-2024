@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+            // map() to convert a list of strings to their uppercase equivalents?
+            const myStrings = ["Hello", "My", "Name", "is", "Rakesh"];
+            const upperCaseStrings = myStrings.map((s)=>{
+                return s.toLocaleUpperCase()
+            })
+            console.log(upperCaseStrings);
+
+            //chain map, filter & reduce
+            const numbers = [1,2,3,4,5,6];
+            const result = numbers.filter((num) =>{
+                return num%2==0
+            }).map((num) =>{
+                return num*2
+            }).reduce((acc,num)=>{
+                return acc+num
+            },0);
+
+            console.log(result);
+
+            const digits = [[1,2], [3,4], [5,6]];
+            const flatrened = digits.map((arr) => arr).flat();
+            console.log(flatrened);  
+
+            const fruits = ['apple', 'banana', 'orange', 'apple', 'orange', 'banana', 'apple'];
+            const countedFruits = fruits.reduce((acc, curr)=>{
+                if(acc[curr]){
+                   acc[curr] = acc[curr] + 1 
+                }else{
+                    acc[curr] =1
+                }
+                return acc
+            }, {})
+            console.log(countedFruits);
+    </script>
+</body>
+</html>

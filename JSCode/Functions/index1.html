@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Hositing is a phenomenon in javascript by which we cna access the variables and functions even before have intialized it.</p>
+    <p>In case of Arrow Function - If we try to acces the access before the initialization then it will undefined becacuse it will treat as variable</p>
+    <script>
+        console.log(x); // undefined
+        getName() 
+        var x =7;
+        function getName(){
+            console.log("getName") //getName
+        }
+
+        arrowFunction()
+        const arrowFunction = () =>{
+            console.log("ArrowFunction") //Uncaught ReferenceError: Cannot access 'arrowFunction' before initialization
+        }
+
+        console.log(z); //Uncaught ReferenceError: Cannot access 'z' before initialization
+        let z = 20;
+    </script>
+</body>
+</html>

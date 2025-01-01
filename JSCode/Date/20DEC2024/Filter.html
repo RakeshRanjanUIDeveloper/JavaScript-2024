@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //Filter out odd numbers from an array.
+        const numbers = [1, 2, 3, 4, 5, 6, 7];
+        const OddNumbers = numbers.filter((num) => num % 2 != 0);
+        console.log(OddNumbers)
+
+        //Find all numbers greater than 50 in an array.
+        const values = [10, 20, 99, 88, 77, 50, 34];
+        const greathanFifty = values.filter((value) => value > 50);
+        console.log(greathanFifty);
+
+        //Remove empty strings from an array.
+        const allString = ['a', '', 'c', ''];
+        // const removeemptryString = allString.filter((str) => str!=='');
+        const removeemptryString = allString.filter(Boolean)
+        console.log(removeemptryString)
+
+        //Filter out users below the age of 18 from an array of user objects.
+        const users = [22, 11, 10, 4, 18, 21];
+        const lessthan18Age = users.filter((age) => age < 18);
+        console.log(lessthan18Age)
+
+        //Filter a list of products by a search keyword (e.g., name or description).
+        const products = [
+            { id: 1, name: 'Apple iPhone 13', description: 'Smartphone with A15 Bionic chip' },
+            { id: 2, name: 'Samsung Galaxy S21', description: 'High-end Android phone' },
+            { id: 3, name: 'Sony Headphones', description: 'Noise-canceling over-ear headphones' },
+            { id: 4, name: 'Apple MacBook Pro', description: 'Laptop with M1 Pro chip' },
+        ];
+        const searchkeyword = 'Apple';
+        const filteredProducts = products.filter((product) => product.name.toLowerCase().includes(searchkeyword.toLowerCase()));
+        console.log(filteredProducts)
+
+        //Filter out prime numbers from an array.
+        const digits = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+        const isPrime = (num) => {
+            if (num <= 1) return false; // 0 and 1 are not prime numbers
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false; // Divisible by other numbers
+            }
+            return true;
+        };
+        const nonPrimeNumbers = digits.filter((num) => !isPrime(num));
+        console.log(nonPrimeNumbers);
+
+        //Given an array of orders, filter out orders where the total amount is less than a specified value.
+        const orders = [
+            { id: 1, customer: 'Alice', totalAmount: 45 },
+            { id: 2, customer: 'Bob', totalAmount: 120 },
+            { id: 3, customer: 'Charlie', totalAmount: 80 },
+            { id: 4, customer: 'Dave', totalAmount: 30 }
+        ];
+        const minAmount = 50;
+        const filterOrders = orders.filter((order) => order.totalAmount < minAmount);
+        console.log(filterOrders)
+    </script>
+</body>
+
+</html>

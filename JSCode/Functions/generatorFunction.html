@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>A generator function uses the yield keyword to generate values, pausing execution and sending values to the caller.</h2>
+    <h2>Generator functions return a generator object. </h2>
+
+    <script>
+        function* fun(){
+            yield 10;
+            yield 20;
+            yield 30;
+        }
+        let gen = fun();
+        console.log(gen.next().value);
+        console.log(gen.next().value);
+        console.log(gen.next().value);
+
+
+        function* nextNatural(){
+            let naturalNumber = 1;
+            while(true){
+                yield naturalNumber++
+            }
+        }
+        let gen1 = nextNatural();
+        for (let index = 0; index < 10; index++) {
+           console.log(gen1.next().value);  
+        }
+    </script>
+</body>
+</html>

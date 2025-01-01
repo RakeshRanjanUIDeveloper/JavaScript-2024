@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Assignment 1
+        let user ={};
+        user.name="John";
+        user.surname= "Smith";
+        user.name="Pete";
+        delete user.name;
+
+        //Assignment 2
+        function isEmpty(obj){
+            for(let key in obj){
+                return false
+            }
+            return true
+        }
+
+        //Assignment 3
+        let salaries ={
+            John : 100,
+            Ann  : 160,
+            Pete : 130
+        }
+        // let sum = salaries.John+salaries.Ann+salaries.Pete;
+        // alert(sum);
+        let sum = 0;
+        for(let key in salaries){
+            sum += salaries[key]
+        }
+        alert(sum);
+
+        //Assignment 4
+
+        let menu ={
+            width:200,
+            height:300,
+            title:"my menu"
+        }
+        function multiplyNumeric(obj){
+            for (const key in obj) {
+                if(typeof obj[key] == 'number'){
+                    obj[key] *= 2;
+                }
+            }
+            return obj;
+        }
+        console.log(multiplyNumeric(menu));
+    </script>
+</body>
+</html>

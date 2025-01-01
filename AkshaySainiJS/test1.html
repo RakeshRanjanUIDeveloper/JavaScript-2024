@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function checkWordMatch (words){
+            const [word1, word2] = words;
+            for(i=0; i<=word1.length; i++){
+                for(let j=i+1; j<=word1.length; j++){
+                    const substring = word1.slice(i,j);
+                    console.log(substring);
+                    if(word2.includes(substring)){
+                        return true
+                    }
+                }
+            }
+            return false
+                
+            
+        }
+        console.log(checkWordMatch(['boy', 'oy']));
+        //console.log(checkWordMatch(['ram', 'no']))
+    </script>
+</body>
+</html>

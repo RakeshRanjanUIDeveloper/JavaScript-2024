@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            margin: 0px 0 150px;
+            font-family: "Noto Sans", sans-serif;
+        }
+
+        :root {
+            --white: #fff;
+            --darkblue: #1b4965;
+            --lightblue: #edf2f4;
+        }
+
+        .container {
+            margin: 0 auto;
+            display: block;
+            width: 95%;
+        }
+
+        .container h2 {
+            text-align: center;
+        }
+
+        .table-container {
+            width: 100%;
+            margin: 20px auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .table-header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .search-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-wrapper input {
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .view-options {
+            display: flex;
+            align-items: center;
+        }
+
+        .view-options label {
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .view-options select {
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .crypto-table {
+            margin: 0px 0 20px;
+            border-collapse: collapse;
+            text-align: center;
+            width: 100%;
+        }
+
+        .crypto-table th,
+        .crypto-table td {
+            padding: 5px;
+            min-width: 75px;
+        }
+
+        .crypto-table th {
+            color: var(--white);
+            background: var(--darkblue);
+            border: 1px solid #000;
+        }
+
+        .crypto-table tbody tr,
+        td {
+            border: 1px solid #000;
+        }
+
+        .crypto-table tbody tr:nth-of-type(even)>* {
+            background: var(--lightblue);
+        }
+        .crypto-table th:not(:first-child){
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="min-height">
+        <div class="container">
+            <h2>Crypto Dashboard</h2>
+            <div class="table-container">
+                <div class="table-header">
+                    <div class="search-wrapper">
+                        <input type="text" id="search-input" placeholder="Search...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="view-options">
+                        <label for="rows-select">Show rows:</label>
+                        <select id="rows-select">
+                            <option value="10">10</option>
+                            <option value="50">50</option>
+                            <option value="75">75</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                </div>
+                <table class="crypto-table">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th data-column="name" onclick="sortTable('name')">Name <i class="fas fa-sort"></i></th>
+                            <th data-column="current_price" onclick="sortTable('current_price')">Current Price <i class="fas fa-sort"></i></th>
+                            <th data-column="price_change_24h" onclick="sortTable('price_change_24h')">Price Change in 24 Hours <i class="fas fa-sort"></i></th>
+                            <th data-column="last_updated" onclick="sortTable('last_updated')">Last Updated <i class="fas fa-sort"></i></th>
+                            <th data-column="market_cap_rank" onclick="sortTable('market_cap_rank')">Market Cap Rank <i class="fas fa-sort"></i></th>
+                            <th data-column="total_supply" onclick="sortTable('total_supply')">Total Supply <i class="fas fa-sort"></i></th>
+                            <th data-column="total_volume" onclick="sortTable('total_volume')">Total Volume <i class="fas fa-sort"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--Data will be insrted here-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <script>
+        let currentData = [];
+        const sortDirection = {};
+
+        let rowsPerPage = 10;
+        let currentPage = 1;
+        const rowsSelect = document.getElementById('rows-select');
+
+        const API_URL = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr&order=market_cap_desc&per_page=100&page=1&sparkline=false';
+        const searchInput = document.getElementById('search-input');
+        async function fetchCryptoData() {
+            try {
+                const response = await fetch(API_URL)
+                if (!response.ok) {
+                    throw new Error(`HTTP Error!! status ${response.status}`)
+                }
+                currentData = await response.json();
+                console.log(currentData);
+                displayCryptoData(currentData);
+            } catch (error) {
+                console.log('Error Fetching data', error);
+            }
+        }
+
+        function formatDate(isoDateString) {
+            const options = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZoneName: 'short'
+            };
+            return new Date(isoDateString).toLocaleString('en-US', options)
+        }
+        function displayCryptoData(currentData) {
+            const tableBody = document.getElementsByClassName('crypto-table')[0].getElementsByTagName('tbody')[0];
+            tableBody.innerHTML = '';
+
+            const start = (currentPage -1) * rowsPerPage;
+            const end  = start + rowsPerPage;
+            const paginatedData = currentData.slice(start, end);
+
+            paginatedData.forEach(element => {
+                const row = tableBody.insertRow();
+                const imageCell = row.insertCell(0);
+                imageCell.appendChild(Object.assign(document.createElement('img'), {
+                    src: element.image,
+                    alt: element.name,
+                    style: 'width:50px; height:50px'
+                }))
+                row.insertCell(1).textContent = element.name;
+                row.insertCell(2).textContent = Math.floor(element.current_price);
+                row.insertCell(3).textContent = Math.floor(element.price_change_24h);
+                row.insertCell(4).textContent = formatDate(element.last_updated);
+                row.insertCell(5).textContent = Math.floor(element.market_cap_rank);
+                row.insertCell(6).textContent = Math.floor(element.total_supply);
+                row.insertCell(7).textContent = Math.floor(element.total_volume);
+
+            });
+        }
+
+        function filterTable(searchTerm) {
+            const filteredData = currentData.filter(d =>
+                Object.values(d).some(value => 
+                    value !== null && value !== undefined && 
+                    value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+                )
+            );
+            displayCryptoData(filteredData);
+        }
+
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value;
+            filterTable(searchTerm);
+        });
+        
+        function sortTable(column){
+            const order = sortDirection[column] === 'asc' ? 'desc' : 'asc';
+            sortDirection[column] = order;
+            currentData.sort((a,b)=>{
+                const aValue = a[column];
+                const bValue = b[column];
+                if(typeof aValue === 'string'){
+                    return order === 'asc' ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+                }else{
+                    return order === 'asc' ? aValue - bValue : bValue - aValue 
+                }
+            })
+            displayCryptoData(currentData)
+        }
+        
+        rowsSelect.addEventListener('change', updateRowsPerPage);
+        function updateRowsPerPage(){
+            rowsPerPage = parseInt(rowsSelect.value, 10);
+            displayCryptoData(currentData);
+        }
+        window.onload = fetchCryptoData;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Object.Keys() is static method which return an array for the given object</p>
+    <p>JSON.parse() method is used to parse the JSON encoded string into javascript object</p>
+    <p>comparison operators (>) in JavaScript are evaluated from left to right,</p>
+    <p>When == operator to compare values of different types, the operands will be converted to a common type before the comparison is made. This process is called type coercion.</p>
+    <p>an empty array [] is a truthy value when coerced to a Boolean.</p>
+    <p>the + operator with a string and a number, JavaScript performs string concatenation</p>
+    <p>– operator with a string and a number, JavaScript attempts to convert the string to a number.</p>
+    <p>non-empty string, it is considered a truthy value when converted to Boolean</p>
+    <script>
+        let x= {
+            a:1,
+            b:2
+        }
+        let y = Object.keys(x);
+        console.log(Object.keys(x))
+        console.log(y)
+        console.log(y.length)
+
+        let m ='{"b":1,"c" : 2}';
+        let n = JSON.parse(m);
+        console.log(typeof n)
+
+        let s= 0.1 + 0.2;
+        console.log(s)
+        let r = 0.3;
+        console.log(s == r)
+
+        let q = 1 > 2 > 3;
+        console.log(q);
+
+        let g = false;
+        let h = "0";
+        let i = 0;
+        console.log(g==h); // true
+        console.log(g==i); // true
+
+        let t = [];
+        console.log(Boolean(t))
+
+        let p = Infinity;
+        console.log(typeof p)
+
+        let j = "5";
+        let k=3;
+        console.log(j+k);
+        console.log(j-k)
+
+        let z = () =>{
+            console.log(this)
+        }
+        z();
+
+        let qq = 'hello';
+        let ww = new String('hello');
+        console.log(qq==ww); //true
+        console.log(qq === ww); // false
+
+        let ee = [];
+        let rr = [];
+        let tt = ee + rr;
+        console.log(typeof tt);
+
+        let yy = [1,2,3,4,5];
+        let uu = yy.filter((ii)=> ii >= 3);
+        console.log(uu)
+
+        let ii = true;
+        let oo = false;
+        let pp = ii+oo && ii*oo;
+        console.log(pp)
+
+        function foo(a,b){
+            console.log(arguments[0], arguments[1]);
+        }
+        foo(3)
+
+        //upto 20 Questions
+    </script>
+</body>
+</html>

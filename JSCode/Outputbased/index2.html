@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log(null);
+        console.log(!!'');
+        console.log(1);
+
+        console.log([...'Ayush']);
+
+        var a =10;
+        var b =a; //b=10
+        b=20; // b = 20
+        console.log(a); //10
+        console.log(b); //20
+
+        //The value assigned to the variable of primitive data type is tightly coupled. 
+
+        function sum(...arguments){
+            return arguments.reduce((a,b) => a+b);
+        }
+        console.log(sum(1,2,3))
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>A shallow copy duplicates the top-level properties of an object or array.</h3>
+    <h3>If you modify the top-level properties, the changes won't affect the original. </h3>
+    <h3>However, changes to nested structures (objects/arrays) will impact both the copy and the original.</h3>
+    <h3>How to do Shallow Copy
+        <ul>
+            <li>Using Object.assign()</li>
+            <li>Using the Spread Operator</li>
+        </ul>
+    </h3>
+    <hr>
+    <h3>A deep copy creates an entirely new copy of the object or array, including all nested objects and arrays.</h3>
+    <h3>Changes to the copied structure do not affect the original.</h3>
+    <h3>How to do Deep copy
+        <ul>
+            <li>Using JSON.stringify() and JSON.parse()</li>
+        </ul>
+    </h3>
+        <script>
+            const obj ={a:1, b: {c:2}} ;
+            const shallowCopy = Object.assign({}, obj);
+            shallowCopy.a=10;
+            console.log(obj.a);
+            shallowCopy.b.c=3;
+            console.log(obj.b.c);
+
+            const arr =[1,2,{value :3}];
+            const shallowCopy1 = [...arr];
+            shallowCopy1[2].value = 33;
+            console.log(arr[2].value);
+
+
+            const objjj = {a: 1, b: {c:2}};
+            const deepCopy = JSON.parse(JSON.stringify(objjj));
+            deepCopy.b.c=44;
+            console.log(objjj.b.c);
+        </script>
+</body>
+</html>

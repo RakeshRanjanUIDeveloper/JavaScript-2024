@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="interview-questions">
+        let a = [];
+        let b = [];
+        console.log(a==b); //false
+        console.log(a===b); //false
+        Explaination : Here we are comparing memory locations, not an array. Memory locations of 2 arrays are not same.
+        <hr>
+        let a = [];
+        let b = a;
+        console.log(a==b); //true
+        console.log(a===b); //true The === (strict equality) operator checks both the type and the value.
+        Explaination : Here we are assigning a to b, where memory locations is now same.
+        <hr>
+        let a = [1];
+        let b = [1];
+        console.log(a[0]==b[0]); //true
+        console.log(a[0]===b[0]); //true
+        Explaination : Here we are comparing elements inside an array, not a memory locations. We specify the index so that's why element get compared.
+        <hr>
+        let z= [1,2,3]
+        let a ={name: "priya"}
+        console.log(...z); // 1 2 3 
+        Explaination : ...z means destructing happened i.e, all the elements are come out from an array/object
+        <br>
+    </div>
+    <script>
+        let a =[];
+        console.log(a);
+        let b = [];
+        console.log(b);
+        console.log(a == b); // false
+        console.log(a === b); // false
+
+        let c = [];
+        let d = c;
+        console.log(c == d); // true
+        console.log(c === d); // true
+
+        let e =[1];
+        let f = [1];
+        console.log(a[0] == b[0]); // true
+        console.log(a[0] === b[0]); // true
+
+        let z =[1,2,3];
+        console.log(...z);
+
+        let data ={name: 'Rakesh'}
+        console.log(delete data); // false
+        console.log(delete data.name); // true
+
+        let names =["rakesh", "ranjan", "misu"]; 
+        const [p] = names; // Destructuring
+        console.log(p);
+        const [q,r] = names;
+        console.log(q,r);
+        const [, , s]= names;
+        console.log(s);
+
+        const address = { location: "Bangalore" };
+        const { location:city } = address;
+        console.log(city);
+
+        
+    </script>
+</body>
+</html>

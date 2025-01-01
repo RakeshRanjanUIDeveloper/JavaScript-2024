@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const passengers = [
+            {
+                id: 1,
+                passengerName: "Freddie Mercury",
+                isVegetarianOrVegan: false,
+                connectedFlights: 2,
+            },
+            {
+                id: 2,
+                passengerName: "Amy Winehouse",
+                isVegetarianOrVegan: true,
+                connectedFlights: 4,
+            },
+            {
+                id: 3,
+                passengerName: "Kurt Cobain",
+                isVegetarianOrVegan: true,
+                connectedFlights: 3,
+            },
+            {
+                id: 3,
+                passengerName: "Michael Jackson",
+                isVegetarianOrVegan: true,
+                connectedFlights: 1,
+            },
+        ];
+        //let pessengersName = [];
+        // for (let index = 0; index < passengers.length; index++) {
+            // if(passengers[index].isVegetarianOrVegan){
+                // pessengersName.push(passengers[index].passengerName)
+            // }   
+        // }
+
+        // passengers.forEach((p)=>{
+            // if(p.isVegetarianOrVegan){
+                // pessengersName.push(p.passengerName)
+            // }
+            // 
+        // })
+
+       const pessengersName =passengers.filter((p)=>p.isVegetarianOrVegan).map((p)=>p.passengerName)
+        console.log(pessengersName)
+
+        const numberOfFlights = passengers.sort((p1,p2)=> p1.connectedFlights - p2.connectedFlights);
+        console.log(numberOfFlights)
+
+        console.log(x);
+        var x = 20;
+    </script>
+</body>
+
+</html>

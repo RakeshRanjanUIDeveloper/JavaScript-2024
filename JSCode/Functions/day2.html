@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+</head>
+
+<body>
+    <script>
+        // create an Array using for loop with given size
+        let size = 5;
+        let myArray = [];
+        for (i = 0; i < size; i++) {
+            myArray.push(i);
+        }
+        console.log(myArray);
+
+        const count = new Array();
+        console.log("count Array :", count);
+        const number = new Array(1, 2, 3, 4, 5);
+        console.log("Number Array : ", number);
+
+        //Switch case
+
+        let sum = 21 + 2;
+        switch (sum) {
+            case 5: {
+                console.log("Value is High");
+                break;
+            }
+            case 4: {
+                console.log("You are right")
+                break;
+            }
+            case 3: {
+                console.log("Value is Low");
+                break;
+            }
+            default: {
+                console.log("Learn Math first");
+                break
+            }
+        }
+
+        //Function expression
+
+        function filterGivenNumbers(numbers) {
+            return numbers.filter(function (num) {
+                return num % 2 === 0
+            })
+        }
+        console.log(filterGivenNumbers([1, 2, 3, 4, 5, 6, 7, 8]));
+
+        function sortByLength(strings) {
+            return strings.sort(function (a, b) {
+                return (
+                    a.length - b.length
+            );
+            });
+        }
+        console.log(sortByLength(["Banana, Apple, Mango, Ja"]));
+
+
+        
+    </script>
+</body>
+
+</html>

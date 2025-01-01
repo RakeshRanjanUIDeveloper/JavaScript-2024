@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Filter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .min-height {
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .product-wrapper {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .product-category {
+            width: 20%;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .product-category h3 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: #333;
+        }
+        .category-list label {
+            display: block;
+            margin: 10px 0;
+            font-size: 1.1em;
+            color: #555;
+        }
+        .product-list {
+            width: 75%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .product {
+            width: calc(33.333% - 20px);
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+        }
+        .product-image {
+            flex-shrink: 0;
+            height: 200px;
+            overflow: hidden;
+        }
+        .product-image img {
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto;
+        }
+        .product-text {
+            padding: 15px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-title {
+            font-size: 1.2em;
+            margin: 0 0 10px;
+            color: #333;
+        }
+        .product-description {
+            font-size: 0.9em;
+            color: #666;
+            margin: 0;
+            flex-grow: 1;
+        }
+        .product-details {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            background-color: #fafafa;
+            font-size: 0.9em;
+            color: #333;
+            margin: 0;
+        }
+        .product-details li {
+            margin: 5px 0;
+            font-size: 0.95vw;
+            font-weight: 400;
+            color: #000;
+            font-family: Graphik;
+            list-style-type: none;
+        }
+        .product-price {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <section class="min-height">
+        <div class="product-wrapper">
+            <div class="product-category">
+                <h3>Category</h3>
+                <div class="category-list"></div>
+            </div>
+            <div class="product-list">
+                <h3>Our Products</h3>
+            </div>
+        </div>
+    </section>
+    <script>
+        const apiURL = 'https://fakestoreapi.com/products';
+        const productList = document.querySelector('.product-list');
+        const categoryListDiv = document.querySelector('.category-list');
+        const displayAllProducts = async () => {
+            let response = await fetch(apiURL);
+            let result = await response.json();
+            console.log(result);
+            // Collect unique categories
+            const uniqueCategories = result.reduce((acc, item) => {
+                if (!acc.includes(item.category)) {
+                    acc.push(item.category);
+                }
+                return acc;
+            }, []);
+
+            // Display unique categories
+            categoryListDiv.innerHTML = '';
+            uniqueCategories.forEach(category => {
+                categoryListDiv.innerHTML += `
+                    <label><input type="checkbox" class="category-filter">${category}</label>
+                `;
+            });
+
+            // Display products
+            productList.innerHTML = '';
+            result.forEach(element => {
+                productList.innerHTML += `
+                    <div class="product">
+                        <div class="product-image">
+                            <img src="${element.image}" alt="${element.title}">
+                        </div>
+                        <div class="product-text">
+                            <h5 class="product-title">${element.title}</h5>
+                            <p class="product-description">${element.description.substring(0, 150) + "..."}</p>
+                        </div>
+                        <ul class="product-details">
+                            <li class="product-price">Price - <b>${element.price} INR</b> </li>
+                            <li class="product-rating">Rating - <b>${element.rating.rate}</b></li>
+                            <li class="product-count">Count Available - <b>${element.rating.count}</b></li>
+                        </ul>
+                    </div>
+                `;
+            });
+        }
+
+        displayAllProducts();
+
+        //Add event listener to all checkbox
+        document.querySelectorAll('.category-filter').forEach(checkbox =>{
+            checkbox.addEventListener('change', filterProducts)
+        })
+        //Filter Products
+        const filterProducts = () => {
+            
+        };
+    </script>
+</body>
+</html>

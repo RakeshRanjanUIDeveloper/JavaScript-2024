@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos by User</title>
+    <style>
+        .user-block {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+        }
+        .user-title {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .todo {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="todos-container"></div>
+
+    <script>
+        async function fetchTodos() {
+            const response = await fetch('https://dummyjson.com/todos?limit=10&skip=80');
+            const data = await response.json();
+            return data.todos;
+        }
+
+        function organizeTodosByUser(todos) {
+            const userTodos = {};
+
+            todos.forEach(todo => {
+                const { userId } = todo;
+                if (!userTodos[userId]) {
+                    userTodos[userId] = [];
+                }
+                userTodos[userId].push(todo);
+            });
+
+            return userTodos;
+        }
+
+        function displayTodos(userTodos) {
+            const container = document.getElementById('todos-container');
+            for (const userId in userTodos) {
+                const userBlock = document.createElement('div');
+                userBlock.className = 'user-block';
+
+                const userTitle = document.createElement('div');
+                userTitle.className = 'user-title';
+                userTitle.textContent = `User ID: ${userId}`;
+                userBlock.appendChild(userTitle);
+
+                userTodos[userId].forEach(todo => {
+                    const todoElement = document.createElement('div');
+                    todoElement.className = 'todo';
+                    todoElement.textContent = `${todo.todo} (Completed: ${todo.completed})`;
+                    userBlock.appendChild(todoElement);
+                });
+
+                container.appendChild(userBlock);
+            }
+        }
+
+        async function init() {
+            const todos = await fetchTodos();
+            const userTodos = organizeTodosByUser(todos);
+            displayTodos(userTodos);
+        }
+
+        init();
+    </script>
+</body>
+</html>

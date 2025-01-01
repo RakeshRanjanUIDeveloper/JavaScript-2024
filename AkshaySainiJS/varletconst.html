@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>when a variable declared within a certain scope (like a function or block) has the same name as a variable in an outer scope. <br>
+        When this happens, the inner variable "shadows" or overrides the outer variable in that specific scope. <br>
+        The outer variable is still accessible outside of this scope but is hidden within it.</p>
+
+    <p>let and const provide block scope, so shadowing can also occur within block</p>
+
+    
+    <script>
+        let name = 'Rishi';
+        function greet(){
+            let name ='Rakesh';
+            console.log(name)
+        }
+        greet();
+        console.log(name);
+
+        var x= 88;
+        {
+            var x =99;
+            console.log(x)
+        }
+        console.log(x);
+
+        var a=20;
+        console.log(a);
+        {
+            let a=30;
+            console.log(a);
+        }
+
+        // let b=22;
+        // console.log(b);
+        // {
+            // var b =33;
+            // console.log(b);
+        // }
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Simulate an API Call
+        // Create a function fetchData that returns a promise resolving with dummy API data (an object) after 3 seconds.
+        const fetchData = () =>{
+            return new Promise((resolve, reject) =>{
+                setTimeout(() => {
+                    const dummyData = {
+                        name:"rakesh",
+                        age:32,
+                        address:"Bangalore"
+                    }
+                    resolve(dummyData)
+                }, 3000);
+            })
+        }
+        fetchData()
+            .then((value) => console.log(value))
+            .catch((error) => console.error(error))
+    </script>
+</body>
+</html>

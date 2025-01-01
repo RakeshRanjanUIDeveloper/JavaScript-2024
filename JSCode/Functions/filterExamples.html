@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--Display even number-->
+    <script>
+        const numbers = [1,2,3,4,5,6,7,8,9,10];
+        const displayEvenNumber = () =>{
+            const EvenNumber = numbers.filter((number) =>{
+                return number % 2 == 0;
+            })
+            console.log(EvenNumber)
+        }
+        displayEvenNumber()
+    </script>
+    <!--Filtering Strings by Length-->
+    <script>
+        const words = ['apple', 'banana', 'pear', 'plum', 'orange', 'kiwi'];
+        const longWords = words.filter((word)=>{
+            return word.length >= 5;
+        })
+        console.log(longWords)
+    </script>
+    <!--Filtering Objects by Property Value-->
+    <script>
+        const users = [
+            {name:"Rakesh", age:32},
+            {name:"Ranjan", age:30},
+            {name:"Misu", age:16}
+        ];
+        const ageToVote = users.filter((user) =>{
+            return user.age > 18;
+        })
+        console.log(ageToVote)
+    </script>
+    <!--Filtering Nested Objects -->
+    <script>
+        const products = [
+            {name:"Mobile", spec:{weight:2, brand:"Samung"}},
+            {name:"Laptop", spec:{weight:20, brand:"Apple"}},
+            {name:"Tablet", spec:{weight:30, brand:"Realme"}}
+        ]
+        const heavyProducts = products.filter((product) => {
+            return product.spec.weight  > 2;
+        })
+        console.log(heavyProducts)
+    </script>
+    <!--Filtering Out Duplicates-->
+    <script>
+        const counts =[1,1,2,3,4,4,5,6,7,8,8];
+        const removedDuplicateCounts = counts.filter((number, index, counts) =>{
+            return  counts.indexOf(number) == index
+        }) 
+        console.log(removedDuplicateCounts)
+    </script>
+    <!--Filtering by Multiple Conditions-->
+    <script>
+         const items = [
+            { name: 'Bike', price: 100, inStock: true },
+            { name: 'TV', price: 200, inStock: false },
+            { name: 'Album', price: 10, inStock: true },
+            { name: 'Book', price: 5, inStock: false },
+            { name: 'Phone', price: 500, inStock: true },
+            { name: 'Computer', price: 1000, inStock: false }
+        ];  
+        const affordableInStockItems  = items.filter((item)=>{
+            return item.price<200 && item.inStock== true
+        }) 
+        console.log(affordableInStockItems)
+    </script>
+</body>
+</html>

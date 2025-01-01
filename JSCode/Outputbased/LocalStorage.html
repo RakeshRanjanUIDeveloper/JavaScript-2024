@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--Session storage can not be sent to server while making the network request-->
+    <!--Session storgae has large capacity to store the data. Minimum 5MB data-->
+    <h2>Local Storaage</h2>
+    <input type="text" placeholder="enter text..." />
+    <h2></h2>
+    <script>
+        let input = document.getElementsByTagName('input')[0];
+        let h2 = document.getElementsByTagName('h2')[1];
+        h2.innerHTML = localStorage.getItem('value') || '';
+        input.addEventListener("keyup", display);
+        function display(){
+            localStorage.setItem("value", input.value);
+            h2.innerHTML = localStorage.getItem('value');
+        }
+    </script>
+</body>
+</html>

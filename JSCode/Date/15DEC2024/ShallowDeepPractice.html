@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //Shallow Copy
+        const student = {
+            name: "Rakesh",
+            location: {
+                city: "Bangalore",
+                state: "Karnataka"
+            },
+            hobbies: ["Reading", "Playing"]
+        }
+
+        // const shallowCopy = Object.assign({}, student)
+        const shallowCopy = { ...student };
+        shallowCopy.name = "Ranjan";
+        shallowCopy.location.city = "Telaiya";
+        shallowCopy.hobbies[0] = "Eating"
+
+        console.log(student.name);
+        console.log(student.location.city);
+        console.log(student.hobbies[0]);
+
+
+        const arr = [1, 2, [3, 4], { a: 5 }];
+        const arrayShallowCopy = arr.slice();
+        arrayShallowCopy[0] = 100;
+        arrayShallowCopy[2][0] = 99;
+        arrayShallowCopy[3].a = 42;
+        console.log(arr[0]);   // 1
+        console.log(arr[2][0]); // 99
+        console.log(arr[3].a);  // 42
+
+
+        const obj = {
+            x: 10,
+            y: { z: 20 }
+        };
+        const shallowCopyy = Object.assign({}, obj);
+        shallowCopyy.y.z = 100;
+        console.log(obj.y.z); //100
+
+
+
+
+        function deepClone(obj) {
+            if(obj === null || typeof obj !== 'object'){
+                return obj
+            }
+
+            if(Array.isArray(obj)){
+                return obj.map(deepClone)
+            }
+
+            const newObj = {};
+            for(const key in obj){
+                if(obj.hasOwnProperty(key)){
+                    newObj[key] = deepClone(obj[key])
+                }
+            }
+            return newObj
+        }
+
+        const data = {
+            a: 1,
+            b: { c: 2, d: { e: 3 } },
+            arr: [4, 5, { f: 6 }]
+        };
+
+        const deepCopy = deepClone(data);
+        deepCopy.b.d.e = 99;
+        deepCopy.arr[2].f = 42;
+        console.log(data.b.d.e); 
+        console.log(data.arr[2].f); 
+
+        //https://chatgpt.com/c/67601e25-0f50-800b-88d5-3b9f90cd5de6
+
+        //https://chatgpt.com/c/67601c5c-5708-800b-a707-b978888c1d75
+
+        const obbj = {
+            name: "Alice",
+            details: { age: 25, location: "Wonderland" }
+        };
+
+        const coppy = { ...obbj };
+
+        coppy.details.age = 30;
+
+        console.log(obbj.details.age); // 30
+        console.log(coppy.details.age); //
+        if (obbj.details === coppy.details) {
+        console.log("It's a shallow copy because nested objects are shared.");
+        } else {
+        console.log("It's a deep copy because nested objects are independent.");
+        }
+    </script>
+</body>
+
+</html>

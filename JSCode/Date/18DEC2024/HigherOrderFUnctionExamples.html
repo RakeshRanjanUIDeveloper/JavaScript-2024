@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        //Question 1: Implement a Custom map() Function
+        function customMap(array, callback) {
+            let result = [];
+            for (let i = 0; i < array.length; i++) {
+                result.push(callback(array[i]))
+            }
+            return result
+        }
+
+        const numbers = [1, 2, 3, 4];
+        const doubled = customMap(numbers, (num) => num * 2);
+
+        console.log(doubled); // [2, 4, 6, 8]
+
+
+        //Question 2: Implement a Function that Returns Another Function
+        //Problem: Write a higher-order function createAdder() 
+        // that takes a number x and returns a function to add x to any given number.
+
+        function createAdder(x) {
+            return function (num) {
+                return x + num
+            }
+        }
+        const add5 = createAdder(5);
+        console.log(add5(10)); // 15
+        console.log(add5(20)); // 25
+
+
+        //Question 3: Filtering and Transforming Data
+        //Problem: Use higher-order functions to filter out odd numbers from an array, 
+        //then multiply the remaining even numbers by 2.
+
+        const numberss = [1, 2, 3, 4, 5, 6];
+
+        // Use filter() and map()
+        const result = numberss.filter((numm) => numm % 2 === 0).map((m) => m * 2)
+
+        console.log(result); // [4, 8, 12]
+
+
+        //Question 4: Compose Multiple Functions
+        // Problem: Implement a compose() function that combines two or more functions.
+
+
+        const increment = (num) => num + 1;
+        const double = (num) => num * 2;
+        const square = (num) => num * num;
+        function compose(...funcs) {
+            return function (x) {
+                return funcs.reduceRight((value, func) => func(value), x)
+            };
+        }
+        const incrementThenDouble = compose(double, increment, square);
+        console.log(incrementThenDouble(5)); // 52
+
+
+        //Question 5: Implement a reduce() Function
+        //Problem: Write your own version of the reduce() method.
+
+        function customReduce(array, callback, initialValue) {
+            let acc = initialValue;
+            for (let i = 0; i < array.length; i++) {
+                acc = callback(acc, array[i])
+            }
+            return acc;
+        }
+
+        const sum = customReduce([1, 2, 3, 4], (acc, num) => acc + num, 0);
+        console.log(sum); // 10
+
+        function greet(name) {
+            return function (message) {
+                return `${message}, ${name}!`;
+            };
+        }
+
+        const greetJohn = greet("John");
+        console.log(greetJohn("Hello")); // ? Hello John
+        console.log(greetJohn("Goodbye")); // ? Goodbye John
+
+
+        const numbersss = [1, 2, 3, 4];
+        const resultt = numbersss.map((num) => {
+            if(num % 2 === 0){
+                return num *2
+            }
+        }).filter((value) => value != undefined)
+        console.log(resultt);
+
+
+
+       // Question 8: Create a Function Throttler
+        // Problem: Write a higher-order function throttle() that limits how often a function can be called.
+        function throttle(func, limit) {
+            let lastCall = 0;
+            return function(){
+                const now = Date.now();
+                console.log(now);
+                if(now-lastCall >= limit){
+                    func();
+                    lastCall = now
+                }
+            }
+        }
+
+        const log = throttle(() => console.log("Called!"), 1000);
+
+        log(); // Executes immediately
+        log(); // Ignored if called within 1 second
+        setTimeout(log, 1500);
+    </script>
+
+
+</body>
+
+</html>

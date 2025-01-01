@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //A WeakSet is similar to a Set, but it only stores objects, and the references to these objects are weak. 
+        //WeakSet: Stores objects with weak references. 
+        // The objects can be garbage-collected if they are not referenced elsewhere. 
+        // No iteration or direct size checking is possible.
+        const weakSet = new WeakSet();
+        const obj1 = {};
+        const obj2 = {};
+        weakSet.add(obj1);
+        weakSet.add(obj2);
+        console.log(weakSet.has(obj1));
+
+        //WeakMap: Stores key-value pairs with weak keys. 
+        // Keys can be garbage-collected if they are not referenced elsewhere, and there is no support for iteration.
+
+    </script>
+</body>
+</html>

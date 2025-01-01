@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditional Statements</title>
+</head>
+<body>
+    <script>
+        let num = 20;
+        if(num % 2 === 0){
+            console.log("Given Number is Even");
+        }
+        if(num %2 !== 0){
+            console.log("Given Number is Odd");
+        }
+
+        let age=25;
+        if(age >= 18){
+            console.log("You are elligible for Driving Licence");
+        }else{
+            console.log("You are not elligible for Driving Licence");
+        }
+
+        const count = 0;
+        if(count >0){
+            console.log("Number is greater than zero");
+        }else if(count < 0){
+            console.log("Number is less than Zero");
+        }else{
+            console.log("Number is Zero");
+        }
+
+        const marks = 85;
+        let branch;
+        switch(true){
+            case marks >= 90:
+                branch = "CSE";
+                break;
+            case marks >= 80:
+                branch = "ECE";
+                break;
+            case marks >= 70:
+                branch = "Civil";
+                break;
+            case marks >= 60:
+                branch = "Mechanical";
+                break;
+            default:
+                branch = "Bio Technology";
+                break;
+        }
+        console.log(`Your branch is ${branch}`);
+
+        let myage = 24;
+        const result = (myage > 18) ? "Eligible for Vote" : "Not Eligible for Vote";
+        console.log(result);
+
+        let weather = "Sunny";
+        let temperature = 25;
+        if(weather === 'Sunny'){
+            if(temperature > 25){
+                console.log("It is hot day");
+            }else if (temperature > 20){
+                console.log("It is warm day");
+            }else{
+                console.log("It is cool day");
+            }
+        }else if(weather === 'rainy'){
+            console.log('Dont forget your umbrella!');
+        }else{
+            console.log("Check the weather forecast!");
+        }
+    </script>
+</body>
+</html>

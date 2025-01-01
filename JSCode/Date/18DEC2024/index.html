@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Explorer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+        #searchBar, #genreDropdown, .filters {
+            margin: 10px 0;
+        }
+        .movie-card {
+            display: inline-block;
+            width: 200px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: left;
+        }
+        .pagination {
+            margin: 20px 0;
+        }
+        .pagination button {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Movie Explorer</h1>
+    <input type="text" id="searchBar" placeholder="Search for a movie...">
+    <select id="genreDropdown">
+        <option value="">All Genres</option>
+    </select>
+    <div class="filters">
+        <label><input type="checkbox" value="en" class="filter-checkbox"> English</label>
+        <label><input type="checkbox" value="fr" class="filter-checkbox"> French</label>
+        <label><input type="checkbox" value="es" class="filter-checkbox"> Spanish</label>
+    </div>
+    <div id="movieContainer"></div>
+    <div class="pagination">
+        <button id="prevBtn">Previous</button>
+        <button id="nextBtn">Next</button>
+    </div>
+
+    <script>
+        const searchBar = document.getElementById('searchBar');
+        const genreDropdown = document.getElementById('genreDropdown');
+        const filterCheckboxes = document.querySelectorAll('.filter-checkbox');
+        const movieContainer = document.getElementById('movieContainer');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        let currentPage = 1;
+        const API_KEY = 'a000076ef1fc33c14ca43dc7c8751b06'; // Replace with your TMDb API key
+        const BASE_URL = 'https://api.themoviedb.org/3';
+
+        const fetchMovies = async (query = '', page = 1, filters = {}) => {
+            let url = `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&page=${page}`;
+            if (filters.genre) url += `&with_genres=${filters.genre}`;
+            if (filters.languages) url += `&with_original_language=${filters.languages.join(',')}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                displayMovies(data.results);
+            } catch (error) {
+                console.error('Error fetching movies:', error);
+                movieContainer.innerHTML = '<p>Error loading movies. Please try again.</p>';
+            }
+        };
+
+        const fetchGenres = async () => {
+            try {
+                const response = await fetch(`${BASE_URL}/genre/movie/list?api_key=${API_KEY}`);
+                const data = await response.json();
+                populateGenres(data.genres);
+            } catch (error) {
+                console.error('Error fetching genres:', error);
+            }
+        };
+
+        const populateGenres = (genres) => {
+            genres.forEach(genre => {
+                const option = document.createElement('option');
+                option.value = genre.id;
+                option.textContent = genre.name;
+                genreDropdown.appendChild(option);
+            });
+        };
+
+        const displayMovies = (movies) => {
+            movieContainer.innerHTML = '';
+            if (!movies.length) {
+                movieContainer.innerHTML = '<p>No movies found.</p>';
+                return;
+            }
+            movies.forEach(movie => {
+                const movieCard = document.createElement('div');
+                movieCard.classList.add('movie-card');
+                movieCard.innerHTML = `
+                    <h3>${movie.title}</h3>
+                    <p>Release Date: ${movie.release_date || 'N/A'}</p>
+                    <p>Rating: ${movie.vote_average || 'N/A'}</p>
+                `;
+                movieContainer.appendChild(movieCard);
+            });
+        };
+
+        const applyFilters = () => {
+            const filters = {
+                genre: genreDropdown.value,
+                languages: Array.from(filterCheckboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value),
+            };
+            fetchMovies(searchBar.value, currentPage, filters);
+        };
+
+        searchBar.addEventListener('input', () => {
+            currentPage = 1;
+            applyFilters();
+        });
+
+        genreDropdown.addEventListener('change', applyFilters);
+
+        filterCheckboxes.forEach(checkbox =>
+            checkbox.addEventListener('change', applyFilters)
+        );
+
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                applyFilters();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentPage++;
+            applyFilters();
+        });
+
+        // Initial fetch
+        fetchGenres();
+        fetchMovies();
+    </script>
+</body>
+</html>

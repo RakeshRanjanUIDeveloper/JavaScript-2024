@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="interview-questions">
+       Question: What is typeof []
+        <br>
+        Answer: Object. Actually Array is derived from Object. If you want to check array use Array.isArray(arr)
+        <hr>
+       Question: What is typeof arguments
+        <br>
+        Answer: Object. <br>
+                arguments are array like but not array. <br>
+                But we can convert it into Array using Array.from() or the spread operator (...)
+            
+        <hr>
+        Question: What is the value of typeof null
+        <br>
+        Answer: "object"
+        <hr>
+        What is console.log(true+false) <br>
+        Answer: 1 true is converted to 1, false is converted to 0, The + operator is used for addition here.When true and false are converted to numbers
+        <hr>
+        Question: What is 2+true <br>
+        Answer: 3. 
+        <hr>
+        Question: What is "2"+true <br>
+        Answer: 2true
+        <hr>
+        Question: What is the value of -'34'+10 <br>
+        Answer: -24.
+        <hr>
+        Question: What is the value of +'dude' <br>
+         Answer: NaN.
+         <hr> 
+         Question: If you have var y = 1, x = y = typeof x; What is the value of x? <br>
+         Answer: "undefined" 
+         <hr>
+         Question: for var a = (2, 3, 5); what is the value of a? <br>
+        Answer: 5
+        <hr>
+        Question: for var a = (1, 5 - 1) * 2 what is the value of a? <br>
+        Answer: 8
+        <hr>
+        Question: What is the value of !'bang' <br>
+        Answer: false. "bang" is a non-empty string, and in JavaScript, any non-empty string is considered truthy
+        <hr>
+        Question: What is the value of parseFloat('12.3.4')<br>
+        Answer: 12.3
+        <hr>Question: What is the value of Math.max([2,3,4,5]);<br>
+        Answer: NaN - Math.max() function does not work as expected when an array is passed directly, because it expects individual numbers as arguments, not an array. 
+        <hr>
+        Question: typeof(NaN)<br>
+        Anwser:"number"
+        <hr>
+        Question:null == undefined<br>
+        Answer: true
+        <hr>
+        Question: If var a = 2, b =3 what would be value of a && b<br>
+        Answer: 3 -  any non-zero number is truthy Since both m and n are truthy, m && n will return the last truthy value, which is n, or 3.
+        <hr>
+        Question: What is -5%2<br>
+        Answer:-1. the result of remainder always get the symbol of first operand
+        <hr>
+    </div>
+    <script>
+        const arr = [];
+        console.log(Array.isArray(arr))
+
+        function showArguments(){
+            console.log(typeof arguments)
+        }
+        showArguments("Aditya", "Rakesh")
+
+        function printArguments(...args){
+            console.log(args) // One Approach
+            const argsArray = Array.from(arguments); // Second Approach
+            console.log(argsArray);
+            argsArray.push("mango")
+            console.log(argsArray)
+        }
+        printArguments("Apple", "banana")
+
+        console.log(typeof null)
+        console.log(null === null) //true
+        console.log(null == undefined) // true
+        console.log(null === undefined) // false
+
+        console.log(true + false)
+
+        console.log(2+true) //3
+        console.log("2"+true) // 2true - string concatination
+
+        console.log(+"dude")
+
+        var y=1;
+        x = y =typeof x
+        console.log(x)
+
+        var z= (2,3,5);
+        console.log(z)
+        var c=1;
+        c = (c++, c)
+        console.log(c)
+
+        var t = (1, 5-1)*2
+        console.log(t)
+
+        console.log(!"banga")
+
+        console.log(parseFloat('12.3.4'))
+
+        console.log(Math.max([1,2,3,4,5]))
+        console.log(Math.max(...[1,2,3,4,5,6]))
+
+        console.log(typeof NaN)
+
+        console.log(null == undefined)
+
+        var m =2;
+        var n = 3;
+        console.log(m&&n)
+
+        console.log(- 5%2)
+    </script>
+</body>
+</html>

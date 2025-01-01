@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const nums = [1,2,3,4,5];
+        const output = nums.reduce((acc, curr) =>{
+            acc = acc + curr
+            return acc
+        }, 0)
+        console.log(output);
+
+        const findMax = function(){
+            let max = 0;
+            for (let index = 0; index < nums.length; index++) {
+                if(nums[index] > max){
+                    max = nums[index]
+                }  
+            }
+            return max
+        }
+        console.log(findMax(nums));
+
+        const findMaxOutput = nums.reduce((max,curr)=>{
+            if(curr >max){
+                max = curr
+            }
+            return max
+        },0)
+        console.log(findMaxOutput);
+
+        const users =[
+            {name:"rakesh", age:30},
+            {name:"ranjan", age:32},
+            {name:"misu", age:31},
+            {name:"kumar", age:30},
+            {name:"raja", age:32}
+        ]
+        const checkAgeCount = users.reduce((acc,currr)=>{
+            if(acc[currr.age]){
+                acc[currr.age] = ++acc[currr.age]
+            }else{
+                acc[currr.age] = 1
+            }
+            return acc
+        }, {})
+        console.log(checkAgeCount);
+    </script>
+</body>
+</html>

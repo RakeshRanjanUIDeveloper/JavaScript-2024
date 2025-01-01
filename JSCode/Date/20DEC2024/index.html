@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Write a function that accepts a callback and calls it after 2 seconds.
+        function printName(callback){
+            setTimeout(() => {
+                callback();
+            }, 2000);
+        }
+        printName(function(){
+            console.log("Hello to be printed by 2 Sec");
+        })
+
+        // Create a function that takes two numbers and a callback, 
+        // performs addition on the numbers, and passes the result to the callback.
+
+        function printSum(a,b, callback){
+           return callback(a,b)
+        }
+       const sumResult = printSum(2,3, (a,b) => a+b );
+       console.log(sumResult);
+
+       //  Create a series of functions task1, task2, task3, each performing asynchronous operations (e.g., using setTimeout). 
+       // Chain these functions to simulate callback hell:
+
+       function allFuncs(task1, task2, task3){
+            setTimeout(() => {
+                task1()
+                setTimeout(() =>{
+                   task2()
+                    setTimeout(() => {
+                       task3()
+                    }, 6000);
+                }, 4000)
+            }, 2000);
+       }
+       function task1(){
+        console.log("task1 after 2sec");
+       }
+       function task2(){
+        console.log("task2 after 4sec");
+       }
+       function task3(){
+        console.log("task3 after 2sec");
+       }
+       allFuncs(task1, task2, task3);
+    </script>
+</body>
+</html>
