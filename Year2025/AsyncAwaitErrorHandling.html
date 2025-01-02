@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Fetch data from a non-existing URL and handle the error using try-catch.
+        const fetchResult = async () =>{
+            try {
+                const response = await fetch('httpps://jsonplaceholder.typicode.com/todos/')
+                if(!response.ok){
+                    throw new Error(`HTTP Error: ${response.status}`)
+                }
+                let output = await response.json();
+                console.log(output);
+            } catch (error) {
+                console.error('Error Message : ', error.message)
+            }
+        }
+        fetchResult();
+
+        //Create a function that throws an error inside async and catch it in another function.
+
+        const fetchData = async () => {
+                const response = await fetch('httpps://jsonplaceholder.typicode.com/todos/')
+                if(!response.ok){
+                    throw new Error(`HTTP Error: ${response.status}`)
+                }
+               return await response.json();
+               
+        }
+        const handleFetch = async () =>{
+            try {
+                const data = await fetchData();
+                console.log(data);
+            } catch (error) {
+                console.error('Caught Error:', error.message);
+            }
+        }
+        handleFetch()
+
+    </script>
+</body>
+</html>

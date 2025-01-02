@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .grandparent {
+          padding: 20px;
+          background-color: lightcoral;
+        }
+        .parent {
+          padding: 20px;
+          background-color: lightblue;
+        }
+        .child {
+          padding: 20px;
+          background-color: lightgreen;
+        }
+      </style>
+</head>
+<body>
+    <div class="grandparent">
+        GrandParent
+        <div class="parent">
+            Parent
+            <div class="child">
+                Child
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelector('.grandparent').addEventListener('click', () =>{
+            alert('GrandParent Clicked')
+        });
+        document.querySelector('.parent').addEventListener('click', () =>{
+            alert('parent clicked')
+        })
+        document.querySelector('.child').addEventListener('click', (event) =>{
+            alert('child clicked');
+            event.stopPropagation();
+        })
+    </script>
+</body>
+</html>

@@ -41,6 +41,19 @@
             console.log(data);
         }
         testFunc()
+
+        //Implement an async function to return a resolved value of a promise.
+
+        async function fetchResult() {
+            // return new Promise((resolve) =>{
+            //     resolve("I am the resolved value of a promise")
+            // })
+
+            const result = await Promise.resolve("Hellooooo");
+            return result
+        }
+        fetchResult()
+            .then((data)=> console.log(data))
     </script>
 </body>
 </html>
