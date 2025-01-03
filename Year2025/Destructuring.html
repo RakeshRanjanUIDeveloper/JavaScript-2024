@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //Object Destructuring
+        const obj = { a: 1, b: 2, c: 3 };
+        const { a, b, c } = obj;
+        console.log(a, b, c);
+
+        //Array Destructuring
+        let colors = ["red", "green", "blue"];
+        let [one, two, three] = colors;
+        console.log(one, two, three);
+
+        //Default Values
+        const person = { name: "Rakesh" };
+        const { name, age = 30 } = person;
+        console.log(name, age);
+
+        //Renaming Variables
+        const student = { name: 'Rakesh', college: 'SIET' };
+        const { name: studentName } = student;
+        console.log(studentName);
+
+        //Nested Object Destructuring
+        const user = {
+            id: 1,
+            profile: {
+                name1: 'John',
+                address: { city: 'New York', zip: '10001' }
+            }
+        }; 
+        //const {id, profile:{name1, address:{city, zip}}}=user
+        const {profile:{address:{city}}} = user;
+        console.log(city);
+        
+        //Skipping Array Elements
+        const numbers = [1, 2, 3, 4, 5];
+        const [,,third] = numbers;
+        console.log(third);
+
+        //Function Parameters with Destructuring
+        function greet({name, age}){
+            console.log(`Your Name is ${name} and age is ${age}`);
+        }
+        greet({name:"Raj", age:30})
+
+        //Combining Rest Operator and Destructuring
+        const digits = [1, 2, 3, 4, 5];
+        const [first, ...rest] = digits;
+        console.log(rest);
+
+        //Swapping Variables
+        let num1=10, num2=20;
+        [num1, num2] = [num2,num1];
+        console.log(num1, num2);
+
+        //Destructuring with Default Values in Function Parameters
+        function fetchData({url="https://example.com", method="GET"}){
+            console.log(`Fetching ${url} with ${method}`);
+        }
+        fetchData({mathod:'POST'})
+
+        //Destructuring and Spread in Objects
+        const book = { title: '1984', author: 'George Orwell', year: 1949 };
+        const { title, ...rest1 } = book;
+        console.log(rest1); 
+    </script>
+</body>
+
+</html>

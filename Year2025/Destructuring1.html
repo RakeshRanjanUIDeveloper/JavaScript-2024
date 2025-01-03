@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Write a function that takes an object like { x: 10, y: 20, z: 30 } and
+        //  returns the sum of x, y, and z using destructuring.
+        function printSum({x,y,z}){
+            return x+y+z
+        }
+        console.log(printSum({ x: 10, y: 20, z: 30 }));
+
+        //Given an array of numbers [10, 20, 30, 40, 50],
+        //  write a function to extract the first two numbers and calculate their sum using destructuring.
+        function displayNum(arr){
+            const [first,second] = arr;
+            console.log(first,second);
+            console.log(first+second);
+        }
+        displayNum([10, 20, 30, 40, 50])
+    </script>
+</body>
+</html>
